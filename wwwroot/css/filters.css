@@ -1,0 +1,11 @@
+﻿body {
+}
+
+.filters {
+    background-color:#F5F5F5;
+    height: 450px;
+    width: 350px;
+    top: 570px;
+    left: 1300px;
+    position: absolute;
+}

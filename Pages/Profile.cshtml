@@ -1,0 +1,134 @@
+﻿@page
+@model FindWorkRazor.Pages.ProfileModel
+@{
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/profile.css" asp-append-version="true" />
+
+</head>
+
+<header>
+</header>
+
+<body>
+    <input value="@Model.worker.workerId" type="hidden" />
+
+    <form enctype="multipart/form-data" method="post">
+
+        <div class="persinf">
+            <h3 style="position:static;  margin-top:30px; margin-left:20px;">Особиста інформація</h3>
+
+            <h4 style="position: static;margin-top:25px; margin-left: 25px;">@Model.worker.secondname @Model.worker.firstname</h4>
+            <p style="position: static; margin-top:10px; margin-left: 25px;">@Model.worker.age</p>
+            <input value="@Model.worker.Location" asp-for="@Model.worker.Location" style="position: static; margin-top:0px; margin-left: 25px;" />
+            <button style="position:static; margin-left:25px;">Редагувати</button>
+        </div>
+
+
+
+        <div class="continf">
+            <h3 style="position:static; top:30px; margin-left:20px;" id="inf">Контактна інформація</h3>
+
+            <input value="@Model.worker.workerphone" asp-for="@Model.worker.workerphone" style="position:static; margin-top:15px; margin-left:25px;" />
+            <input value="@Model.worker.email" asp-for="@Model.worker.email" style="position:static; margin-left:25px;" />
+            <button style="position:static; margin-left:25px;">Редагувати</button>
+        </div>
+
+
+
+        <div style="position:static; margin-top:25px; background:white; height:250px; width: 600px;">
+            <h3 style="position:static; margin-left:20px;">Бажана посада</h3>
+
+            @{
+                if (string.IsNullOrEmpty(Model.worker.desirework))
+                {
+                    <p style="position: static; margin-top:15px; margin-left:25px;">Вкажіть бажану посаду</p>
+                    <input asp-for="@Model.worker.desirework" />
+                }
+                else
+                {<input value="@Model.worker.desirework" asp-for="@Model.worker.desirework" style="position:static; margin-top:15px; margin-left:25px" />
+                }
+
+                if (Model.worker.desiresalary == null || Model.worker.desiresalary == 0)
+                {
+                    <p style="position: static;  margin-top:30px; margin-left: 25px;">Вкажіть бажану зарплату</p>
+                    <input asp-for="@Model.worker.desiresalary" />
+                }
+                else
+                {<input asp-for="@Model.worker.desiresalary" value="@Model.worker.desiresalary" style="position:static; margin-top:30px; margin-left:25px" /> }
+
+            }
+
+
+            <button style="position:static; margin-left:25px;">Редагувати</button>
+
+        </div>
+
+        <div style="position:static; margin-top:25px; background:white; height:150px; width:600px;">
+            <h3 style="position:static; margin-left:20px; background:white;  ">Освіта</h3>
+
+            @{
+
+                if (string.IsNullOrEmpty(Model.worker.education))
+                {
+                    <p style="position:static; margin-left:25px;">Вкажіть освіту</p>
+                    <input asp-for="@Model.worker.education" />
+                }
+                else
+                {<input asp-for="@Model.worker.education" value="@Model.worker.education" style="position:static; margin-top:30px; margin-left:25px" /> }
+
+            }
+            <button style="position:static; margin-left:25px;">Редагувати</button>
+        </div>
+
+        <div style="position:static; margin-top:25px; background:white; height:150px; width:600px;">
+            <h3 style="position:static; margin-left:20px; background:white;  ">Ключові навички</h3>
+
+            @{
+
+                if (string.IsNullOrEmpty(Model.worker.skills))
+                {
+                    <p style="position:static; margin-left:25px;">Вкажіть Ваші навички</p>
+                    <input asp-for="@Model.worker.skills" />
+                }
+                else
+                {<input asp-for="@Model.worker.skills" value="@Model.worker.skills" style="position:static; margin-top:30px; margin-left:25px" /> }
+
+            }
+            <button style="position:static; margin-left:25px;">Редагувати</button>
+        </div>
+
+        <div style="position:static; margin-top:25px; background:white; height:150px; width:600px;">
+            <h3 style="position:static; margin-left:20px; background:white;  ">Володіння мовами</h3>
+
+            @{
+
+                if (string.IsNullOrEmpty(Model.worker.languages))
+                {
+                    <p style="position:static; margin-left:25px;">Вкажіть мови, які ви знаєте</p>
+                    <input asp-for="@Model.worker.languages" />
+                }
+                else
+                {<input asp-for="@Model.worker.languages" value="@Model.worker.languages" style="position:static; margin-top:30px; margin-left:25px" /> }
+
+            }
+            <button style="position:static; margin-left:25px;">Редагувати</button>
+        </div>
+
+        <div style="position:static; margin-top:25px; background:white; height:150px; width:600px;">
+
+
+            <input type="file" accept=".pdf"
+                   value="@Model.worker.resumeSrc" asp-for="@Model.worker.resumeFile" />
+
+
+
+            <button style="position:static; margin-left:25px;">Завантажити</button>
+        </div>
+    </form>
+
+    <script src="./js/jquery.js"></script>
+    <script src="./js/profile.js"></script>
+
+</body>

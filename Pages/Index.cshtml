@@ -1,0 +1,129 @@
+﻿@page
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager;
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/vdetails.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/main.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/sidebar.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/filters.css" />
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+</head>
+
+
+<header class="red">
+    <h1 class="siten" id="title">JOB FAST</h1>
+    <img class="mainimg" src="~/img/mainim.png" />
+    @{
+        if (SignInManager.IsSignedIn(User))
+        {
+            <div class="logwind" style="display:none; max-width: 600px;" id="mod">
+                <h3>Are you sure you want to logout?</h3>
+                <form method="post">
+                    <button class="btn btn-primary" asp-page-handler="Logout">Yes</button>
+                    <button data-fancybox-close class="btn btn-light ml-4 border-dark" asp-page-handler="DontLogout">No</button>
+                </form>
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+            <input type="checkbox" id="check" />
+            <label for="check">
+                <p style="position:absolute; left:1184px; top:40px;" id="btn">@User.Identity.Name<img style="height:24px; width:25px;" src="~/img/user.png" /> </p>
+                <i id="close"><img style="width:50px; height:50px;" src="~/img/close.png" /></i>
+            </label>
+
+            <div class="sidebar">
+                <header>
+                    <h3 style="font-size:20px; margin-left:30px; position:absolute; top:29px;"> @User.Identity.Name</h3>
+                    <p style="font-size:18px; margin-left:35px; position:absolute; top:62px;">+@Model.worker.workerphone</p>
+                </header>
+
+                <ul>
+                    <li style="margin-left:35px;margin-top:30px; position:absolute;">
+                        <a style="color:black; font-size:18px;" asp-page="/Profile"><img style="height:20px; width:20px;" src="~/img/resume.png" />  My resume</a>
+                    </li>
+                    <li style="margin-left:35px; margin-top:68px; position:absolute;">
+                        <a style="color: black; font-size:18px;" asp-page="/MyResponses">My responses</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li id="logout">
+                        <a style="color:red;" data-fancybox data-src="#mod" data-modal="true" href="javascript:;">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        }
+        else
+        {
+            <div class="col-lg-6 btn-blocks">
+                <a data-fancybox data-src="#modal" data-modal="true" href="javascript:;" class="entry">ВХІД</a>
+            </div>
+            <div style="width:522px; height:330px; background-color: #E05B49; display: none;" id="modal">
+                <img style="height:30px; width:30px; position:absolute; top: 20px; left:472px;" data-fancybox-close src="~/img/close.png" />
+
+                <form method="post">
+
+                    <input asp-for="Model.name" style="color:white; background-color: #E05B49; position: absolute; width: 291px; top: 67px; left: 119px;" class="form-control" placeholder="Sur name" type="text" />
+                    <input asp-for="Model.salt" style="color:white; background-color: #E05B49; width: 291px; position: absolute; top: 146px; left: 119px;" class="form-control" placeholder="Password" type="password" />
+                    <button class="logbutton" style="color:white;" type="submit">Log in</button>
+                    <p style="color: white; position:absolute; top:280px; left: 118.5px;">Yet no registered? <a asp-page="/SignUp">Sign up</a></p>
+
+                </form>
+
+            </div>
+
+            <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+        }
+    }
+
+    <h2 class="speedwork">Швидка робота</h2>
+    <h3 class="dospeed">Зроби швидко своє резюме і знаходь роботу по душі</h3>
+
+    <form>
+        <p>
+            <input placeholder="Пошук по професії" class="find" type="text" asp-for="SearchString" />
+            <input class="findb" type="submit" value="Знайти роботу" />
+        </p>
+    </form>
+
+</header>
+<body>
+    <table class="bod">
+       
+        <tbody>
+            @foreach (var item in Model.vacancies)
+            {
+                <tr>
+                    <td>
+                        <div class="row">
+                            <a asp-page="./Details" asp-route-id="@item.vacancyId" class="list-group-item list-group-item-action">
+                                <div>
+                                    <h5>@Html.DisplayFor(modelItem => item.vacancyname)</h5>
+                                </div>
+                                <small class="text-muted">@Html.DisplayFor(modelItem => item.company)</small>
+                                <small class="text-muted">  @Html.DisplayFor(modelItem => item.location)</small>
+
+                                <small>@Html.DisplayFor(modelItem => item.category)</small>
+                                <small style="position:absolute; top:55px; left:750px">@item.publishtime</small>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+        
+    </table>
+   
+    <script src="./js/jquery.js"></script>
+  
+    <script src="./js/site.js"></script>
+</body>

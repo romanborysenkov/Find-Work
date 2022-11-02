@@ -1,0 +1,12 @@
+﻿@page
+@model FindWorkRazor.Pages.MyResponsesModel
+@{
+}
+
+@{
+    foreach(var item in @Model.finalList)
+            {
+                <h4>@item.vacancyname</h4>
+                <p>@item.company</p>
+            }
+}

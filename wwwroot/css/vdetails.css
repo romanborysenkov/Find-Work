@@ -1,0 +1,144 @@
+﻿body {
+    background-color: #F5F5F5;
+}
+
+html {
+    background-color: #F5F5F5;
+}
+
+.header {
+    position: absolute;
+    width: 1920px;
+    height: 100px;
+    left: 0px;
+    top: 0px;
+    background: #E05B49;
+}
+
+.jobwrite {
+    position: absolute;
+    width: 199.79px;
+    height: 33.9px;
+    left: 100.48px;
+    top: 34px;
+    color: white;
+    border-radius: 407.177px;
+}
+
+.find {
+    position: absolute;
+    width: 305px;
+    height: 56px;
+    left: 474px;
+    top: 22px;
+    background: #F2F5F8;
+    border-radius: 10px;
+}
+
+.findb {
+    box-sizing: border-box;
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 34px;
+    gap: 10px;
+    position: absolute;
+    width: 173px;
+    height: 56px;
+    left: 794px;
+    top: 22px;
+    border: 3px solid #F2F5F8;
+    border-radius: 10px;
+}
+
+.username {
+    position: absolute;
+    width: 107px;
+    height: 22px;
+    left: 1184px;
+    top: 40px;
+    font-family: 'Exo 2';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    /* identical to box height */
+    text-align: center;
+    letter-spacing: 0.02em;
+    color: #F2F5F8;
+}
+
+.page {
+    position: absolute;
+    width: 1026px;
+    height: 1419px;
+    left: 207px;
+    top: 144px;
+    background: #FFFFFF;
+    border-radius: 10px;
+}
+
+.back {
+    position: absolute;
+    width: 60px;
+    height: 24px;
+    left: 277px;
+    top: 173px;
+    font-family: 'Exo 2';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    /* identical to box height */
+    letter-spacing: 0.02em;
+    color: #E05B49;
+}
+
+.vacancyname {
+    position: absolute;
+    width: 400px;
+    height: 29px;
+    left: 583px;
+    top: 170px;
+    font-family: 'Exo 2';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    /* identical to box height */
+    letter-spacing: 0.02em;
+    color: #1A2E35;
+}
+
+.response {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 34px;
+    gap: 10px;
+    position: absolute;
+    width: 171px;
+    height: 44px;
+    left: 1038px;
+    top: 163px;
+    background: #E05B49;
+    border-radius: 10px;
+    color: white;
+}
+
+.downresp {
+    width: 138px;
+    height: 24px;
+    color: white;
+    background: #E05B49;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 34px;
+    gap: 10px;
+}

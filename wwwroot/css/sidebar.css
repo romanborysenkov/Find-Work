@@ -1,0 +1,75 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none
+}
+
+.sidebar {
+    display: none;
+    position: absolute;
+  
+    left: 1440px;
+    top: 0px;
+    width: 250px;
+    height: 1024px;
+    background: #F5F5F5;
+    transition: all .5s ease;
+}
+
+    .sidebar header {
+        color: black;
+        text-align:center;
+       height: 100px;
+        background: white;
+        user-select:none;
+        
+    }
+       
+
+    .sidebar #logout {
+        color: red;
+        margin-top: 860px;
+        text-align: center;
+    }
+
+#check {
+    display: none;
+}
+
+label #btn {
+    position: absolute;
+    cursor: pointer;
+    border-radius: 3px;
+    left: 1360px;
+    top: 25px;
+    font-size: 25px;
+    color: white;
+    padding: 6px 12px;
+}
+
+label #close {
+    border-radius: 90px;
+    box-shadow: 0px 0px 11px;
+    background-color: white;
+    position: absolute;
+    cursor: pointer;
+    z-index: 1111;
+    display: none;
+    left: 2200px;
+    top: 20px;
+    padding: 4px 9px;
+    transition: all .5s ease;
+   
+}
+
+#check:checked~.sidebar {
+   display: inline;
+  
+   
+}
+
+#check:checked ~ label #close {
+    left: 1600px;
+    display: none;
+}

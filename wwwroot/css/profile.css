@@ -1,0 +1,23 @@
+﻿body {
+ background-color: #F5F5F5;
+}
+
+html {
+    background-color: #F5F5F5;
+}
+
+.persinf {
+    background: white;
+    height: 170px;
+    width: 600px;
+    top: 200px;
+    left: 300px;
+}
+
+.continf {
+    position: static;
+    margin-top: 25px;
+    background: white;
+    height: 150px;
+    width: 600px;
+}

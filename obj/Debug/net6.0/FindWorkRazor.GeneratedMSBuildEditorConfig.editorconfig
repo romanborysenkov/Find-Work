@@ -1,0 +1,64 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = FindWorkRazor
+build_property.RootNamespace = FindWorkRazor
+build_property.ProjectDir = /Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor
+build_property._RazorSourceGeneratorDebug = 
+
+[/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/Logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9nb3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/MyResponses.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTXlSZXNwb25zZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/SignUp.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2lnblVwLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-zt1j5sob6i
