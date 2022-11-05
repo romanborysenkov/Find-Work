@@ -12,10 +12,20 @@
     <link rel="stylesheet" href="~/css/sidebar.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/filters.css" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100;200;300;600;700&display=swap" rel="stylesheet">
+
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 </head>
+
+<style>
+    body {
+        font-family: 'Exo 2', sans-serif;
+    }
+</style>
 
 
 <header class="red">
@@ -84,7 +94,9 @@
         }
     }
 
-    <h2 class="speedwork">Швидка робота</h2>
+    <h2 style="position:absolute; width:282px; height:43px; left:100px; top:151px; color:#FFFFFF">Швидка робота</h2>
+
+
     <h3 class="dospeed">Зроби швидко своє резюме і знаходь роботу по душі</h3>
 
     <form>
@@ -95,35 +107,108 @@
     </form>
 
 </header>
-<body>
-    <table class="bod">
-       
-        <tbody>
-            @foreach (var item in Model.vacancies)
-            {
-                <tr>
-                    <td>
-                        <div class="row">
-                            <a asp-page="./Details" asp-route-id="@item.vacancyId" class="list-group-item list-group-item-action">
-                                <div>
-                                    <h5>@Html.DisplayFor(modelItem => item.vacancyname)</h5>
-                                </div>
-                                <small class="text-muted">@Html.DisplayFor(modelItem => item.company)</small>
-                                <small class="text-muted">  @Html.DisplayFor(modelItem => item.location)</small>
 
-                                <small>@Html.DisplayFor(modelItem => item.category)</small>
-                                <small style="position:absolute; top:55px; left:750px">@item.publishtime</small>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
+
+<body>
+    <h3 style="color:black; width:339px; height:43px; position:absolute; left:550px; top:589px; font-style:normal;
+font-weight:700; font-size:36px; line-height:43px; text-align:center; letter-spacing:0.02em;">
+        Актуальні вакансії
+    </h3>
+
+    <table class="bod">
+
+        <tbody>
+            @{
+                for (int item = 0; item < Model.vacancies.Count; item += 2)
+                {
+
+                    if (item >= Model.vacancies.Count - 1)
+                    {
+                        <tr>
+
+
+                            <td class="position-static top-100 float-start"  style="display:flex; flex-direction:column; align-items:flex-start; padding:20px; gap:12px;
+                             margin-top:20px; margin-left: 0px; background-color: white; height: 113px; width: 387px; border-radius:10px">
+                                <a asp-page="./Details" asp-route-id="@Model.vacancies[item].vacancyId">
+                                    <div>
+                                        <h5>@Model.vacancies[item].vacancyname</h5>
+                                    </div>
+                                  
+                                    <small class="text-muted"> @Model.vacancies[item].publishtime</small>
+
+                                    <small> @Model.vacancies[item].company</small>
+                                  
+                                </a>
+
+                            </td>
+                           
+                        </tr>
+                    break;
+                }
+                else
+                {
+        <tr>
+
+            <td class="position-static top-100 float-start" style="display: flex; flex-direction: column;  padding: 20px; gap: 12px;
+                margin-top:20px; margin-left: 0px; background-color: white; height: 113px; width: 387px; border-radius:10px">
+                <a asp-page="./Details" asp-route-id="@Model.vacancies[item].vacancyId">
+                    <div>
+                        <h5>@Model.vacancies[item].vacancyname</h5>
+                    </div>
+                    <small class="text-muted"> @Model.vacancies[item].publishtime</small>
+                    <small> @Model.vacancies[item].company</small>
+                </a>
+
+            </td>
+
+            <td class="position-static top-100 float-center" style="display: flex; flex-direction: column;  padding: 20px; gap: 12px;
+                margin-top:20px; margin-left: 428px; background-color: white; height: 113px; width: 387px; border-radius: 10px;">
+                <a asp-page="./Details" asp-route-id="@Model.vacancies[item+1].vacancyId">
+                    <div>
+                        <h5>@Model.vacancies[item + 1].vacancyname</h5>
+                    </div>
+                  
+                    <small class="text-muted"> @Model.vacancies[item + 1].publishtime</small>
+
+                    <small> @Model.vacancies[item + 1].company</small>
+
+                </a>
+
+            </td>
+
+
+           
+        </tr>
+                }
             }
 
-        </tbody>
-        
-    </table>
-   
+
+            /* <tr>
+                <td>
+                    <div style="height:213px; width:387px; border-radius:10px">
+                        <a asp-page="./Details" asp-route-id="@item.vacancyId" class="list-group-item list-group-item-action">
+                            <div>
+                                <h5>@Html.DisplayFor(modelItem => item.vacancyname)</h5>
+                            </div>
+                            <small class="text-muted">@Html.DisplayFor(modelItem => item.company)</small>
+                            <small class="text-muted">  @Html.DisplayFor(modelItem => item.location)</small>
+
+                            <small>@Html.DisplayFor(modelItem => item.category)</small>
+                            <small style="position:absolute; top:55px; left:750px">@item.publishtime</small>
+                        </a>
+                    </div>
+                </td>
+            </tr>*/
+            }
+
+
+
+
+            </tbody>
+
+        </table>
+
     <script src="./js/jquery.js"></script>
-  
+
     <script src="./js/site.js"></script>
 </body>

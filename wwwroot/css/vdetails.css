@@ -98,14 +98,10 @@ html {
 
 .vacancyname {
     position: absolute;
-    width: 400px;
+    width: 600px;
     height: 29px;
-    left: 583px;
+    left: 383px;
     top: 170px;
-    font-family: 'Exo 2';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 24px;
     line-height: 29px;
     /* identical to box height */
     letter-spacing: 0.02em;

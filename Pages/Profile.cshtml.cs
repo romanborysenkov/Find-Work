@@ -58,32 +58,53 @@ namespace FindWorkRazor.Pages
             {
                 w.email = worker.email;
             }
+
+            if (worker.firstname != null)
+            {
+                w.firstname = worker.firstname;
+                w.secondname = worker.secondname;
+                user.UserName = worker.secondname;
+            }
+          
+            w.age = worker.age;
+
+           
             w.desirework = worker.desirework;
             w.desiresalary = worker.desiresalary;
-            w.skills = worker.skills;
+            w.employmentDegree = worker.employmentDegree;
             w.education = worker.education;
+            w.educationDegree = worker.educationDegree;
+            w.graduationYear = worker.graduationYear;
             w.expirience = worker.expirience;
+            w.skills = worker.skills;
             w.languages = worker.languages;
             w.Location = worker.Location;
 
-            user.Email = w.email;
+           
+            user.Email = worker.email;
             user.PasswordHash = passwordHasher.HashPassword(user, w.salt);
-            user.UserName = User.Identity.Name;
+          
             user.PhoneNumber = w.workerphone;
 
 
-            if (worker.resumeFile!=null)
+            if (worker.photoFile!=null)
             {
-                w.resumeName =await SaveImage(worker.resumeFile);
-                w.resumeSrc = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, w.resumeName);
+                w.photoName =await SaveImage(worker.photoFile);
+                w.photoSrc = String.Format("{0}://{1}{2}/Images/{3}", Request.Scheme, Request.Host, Request.PathBase, w.photoName);
             }
 
             var result = await userManager.UpdateAsync(user);
            
                     _context.workers.Update(w);
                     await _context.SaveChangesAsync();
-                    return RedirectToPage("Index");
+                  //  return RedirectToPage("Index");
             return Page();
+        }
+
+        public async Task<IActionResult> OnPostLogoutAsync()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToPage("Index");
         }
 
 

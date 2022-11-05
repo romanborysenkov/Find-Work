@@ -6,129 +6,271 @@
 <head>
     <link rel="stylesheet" href="~/css/profile.css" asp-append-version="true" />
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100;200;300;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/css/sidebar.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 </head>
 
+
+
+<style>
+
+    body {
+        background-color: #F5F5F5;
+        font-family: 'Exo 2', sans-serif;
+    }
+
+    html {
+        background-color: #F5F5F5;
+    }
+</style>
+
 <header>
+    <div style="position:absolute; left:0px; width: 100%; height: 100px; background: #E05B49">
+        <h1 style="position: absolute; width: 200px; height: 33.9px; top: 33px; left: 100.48px; border-radius:407.177px; color: white" id="title"><a style="color:white;" asp-page="/Index">JOB FAST</a></h1>
+
+
+
+        <div class="logwind" style="display:none; max-width: 600px;" id="mod">
+            <h3>Are you sure you want to logout?</h3>
+            <form asp-page-handler="Logout" method="post">
+                <button class="btn btn-primary" asp-page-handler="Logout">Yes</button>
+                <button data-fancybox-close class="btn btn-light ml-4 border-dark" asp-page-handler="DontLogout">No</button>
+            </form>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+        <input type="checkbox" id="check" />
+        <label for="check">
+            <p style="position:absolute; left:1184px; top:40px;" id="btn">@User.Identity.Name<img style="height:24px; width:25px;" src="~/img/user.png" /> </p>
+            <i id="close"><img style="width:50px; height:50px;" src="~/img/close.png" /></i>
+        </label>
+
+        <div class="sidebar">
+            <header>
+                <h3 style="font-size:20px; margin-left:30px; position:absolute; top:29px;"> @User.Identity.Name</h3>
+                <p style="font-size:18px; margin-left:35px; position:absolute; top:62px;">+@Model.worker.workerphone</p>
+            </header>
+
+            <ul>
+                <li style="margin-left:35px;margin-top:30px; position:absolute;">
+                    <a style="color:black; font-size:18px;" asp-page="/Profile"><img style="height:20px; width:20px;" src="~/img/resume.png" />  My resume</a>
+                </li>
+                <li style="margin-left:35px; margin-top:68px; position:absolute;">
+                    <a style="color: black; font-size:18px;" asp-page="/MyResponses">My responses</a>
+                </li>
+            </ul>
+            <ul>
+                <li id="logout">
+                    <a style="color:red;" data-fancybox data-src="#mod" data-modal="true" href="javascript:;">Logout</a>
+                </li>
+            </ul>
+        </div>
+
+
+
+    </div>
 </header>
 
 <body>
-    <input value="@Model.worker.workerId" type="hidden" />
+    <div style="background-color:white; position:absolute; left:349px; top:144px; width:736px; height:1681px;">
+        <form enctype="multipart/form-data" method="post">
+            <a asp-page="/Index" style="color:black; position:absolute; left:34px; top:42px; font-size:20px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
 
-    <form enctype="multipart/form-data" method="post">
-
-        <div class="persinf">
-            <h3 style="position:static;  margin-top:30px; margin-left:20px;">Особиста інформація</h3>
-
-            <h4 style="position: static;margin-top:25px; margin-left: 25px;">@Model.worker.secondname @Model.worker.firstname</h4>
-            <p style="position: static; margin-top:10px; margin-left: 25px;">@Model.worker.age</p>
-            <input value="@Model.worker.Location" asp-for="@Model.worker.Location" style="position: static; margin-top:0px; margin-left: 25px;" />
-            <button style="position:static; margin-left:25px;">Редагувати</button>
-        </div>
-
-
-
-        <div class="continf">
-            <h3 style="position:static; top:30px; margin-left:20px;" id="inf">Контактна інформація</h3>
-
-            <input value="@Model.worker.workerphone" asp-for="@Model.worker.workerphone" style="position:static; margin-top:15px; margin-left:25px;" />
-            <input value="@Model.worker.email" asp-for="@Model.worker.email" style="position:static; margin-left:25px;" />
-            <button style="position:static; margin-left:25px;">Редагувати</button>
-        </div>
+                </svg>  Назад
+            </a>
+            <h2 style="position: absolute; left: 237px; top: 39.5px; font-style: normal; font-size: 24px; color:#1A2E35;">Моє резюме</h2>
+            <button style="display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 14px 34px; gap: 10px;
+          width: 140px; height: 44px; background-color: #E05B49; border-radius:10px; position:absolute; left:530px; color:white; top:32px;">
+                Зберегти
+            </button>
 
 
+            <img accept="image/*" alt="Click for selecting photo" 
+                 src="@Model.worker.photoSrc" style="flex-shrink:0; overflow:hidden; display:flex; align-items:center; justify-content:center; border-radius:100%; position:absolute; top:122px; left:283px; height:auto; width:170px;" />
+            <input asp-for="@Model.worker.photoFile" type="file" style="opacity:0; position:absolute; top:122px; left:283px; width:170px; height:170px;" />
 
-        <div style="position:static; margin-top:25px; background:white; height:250px; width: 600px;">
-            <h3 style="position:static; margin-left:20px;">Бажана посада</h3>
+            <div>
+                <h3 style="font-size:24px; position:absolute; top:316px; left:56px;">Особиста інформація*</h3>
 
-            @{
-                if (string.IsNullOrEmpty(Model.worker.desirework))
-                {
-                    <p style="position: static; margin-top:15px; margin-left:25px;">Вкажіть бажану посаду</p>
-                    <input asp-for="@Model.worker.desirework" />
+                <input asp-for="@Model.worker.firstname" value="@Model.worker.firstname" placeholder="Name" style="position:absolute; width:100px; height:39px;
+            left:57px; top:355px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
+
+                <input asp-for="@Model.worker.secondname" value="@Model.worker.secondname" placeholder="Surname" style="position:absolute; width:266px; height:39px;
+            left:181px; top:355px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
+
+                <select style="position: absolute; width: 92px; height: 39px; left: 471px; top: 355px; display: flex; flex-direction: row; align-items: center; padding: 10px 15px; gap: 10px; "
+                        asp-for="@Model.worker.age" class="form-select" aria-label="@Model.worker.age">
+                    <option value="1970">1970</option>
+                    <option value="1971">1971 </option>
+                    <option value="1972">1972</option>
+                    <option value="1973">1973</option>
+                    <option value="1974">1974</option>
+                    <option value="1975">1975</option>
+
+                    <option value="1976">1976 </option>
+                    <option value="1977">1977 </option>
+                    <option value="1978">1978</option>
+                    <option value="1979">1979</option>
+                    <option value="1980">1980</option>
+                    <option value="1981">1981</option>
+
+                    <option value="1982">1982 </option>
+                    <option value="1983">1983</option>
+                    <option value="1984">1984</option>
+                    <option value="1985">1985</option>
+                    <option value="1986">1986</option>
+                    <option value="1987">1987</option>
+
+                    <option value="1988">1988</option>
+                    <option value="1989">1989 </option>
+                    <option value="1990">1990</option>
+                    <option value="1991">1991</option>
+                    <option value="1992">1992</option>
+                    <option value="1993">1993</option>
+
+                    <option value="1994">1994 </option>
+                    <option value="1995">1995 </option>
+                    <option value="1996">1996</option>
+                    <option value="1997">1997</option>
+                    <option value="1998">1998</option>
+                    <option value="1999">1999</option>
+
+                    <option value="2000">2000</option>
+                    <option value="2001">2001</option>
+                    <option value="2002">2002 </option>
+                    <option value="2003">2003</option>
+                    <option value="2004">2004</option>
+                    <option value="2005">2005</option>
+                    <option value="2006">2006</option>
+                </select>
+
+              
+          
+
+                <input asp-for="@Model.worker.Location" value="@Model.worker.Location" placeholder="City" style="position: absolute; width: 92px; height: 39px;
+         left: 587px; top: 355px; display: flex; flex-direction: row; align-items: center; padding: 10px 15px; gap: 10px;" />
+            </div>
+
+            <div>
+                <h3 style="font-size:24px; position:absolute; top:430px; left:56px;">Контактна інформація*</h3>
+
+                <input asp-for="@Model.worker.workerphone" value="@Model.worker.workerphone" placeholder="Phone number" style="position:absolute; width:390px; height:39px;
+            left:57px; top:469px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
+
+                <input asp-for="@Model.worker.email" value="@Model.worker.email" placeholder="Email" style="position:absolute; width:390px; height:39px;
+            left:57px; top:524px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
+            </div>
+
+            <div>
+                <h3 style="font-size:24px; position:absolute; top:604px; left:56px;">Бажана посада*</h3>
+
+                <input asp-for="@Model.worker.desirework" value="@Model.worker.desirework" placeholder="Work name" style="position:absolute; width:390px; height:39px;
+            left:57px; top:643px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
+
+               
+                <input min="5000" step="1000" max="100000" type="range" class="form-range range-style" asp-for="@Model.worker.desiresalary" value="@Model.worker.desiresalary" placeholder="Salary" style="position:absolute; width:390px; height:39px;
+            left:57px; top:698px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
+
+                <select style="position:absolute; width:390px; height:43px; left:57px; top:758px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;"
+                        asp-for="@Model.worker.employmentDegree" class="form-select" aria-label="@Model.worker.employmentDegree">
+                    <option value="Повний робочий день">Повний робочий день</option>
+                    <option value="Не повний робочий день">Не повний робочий день</option>
+                    <option value="Дистанційна робота">Дистанційна робота</option>
+                </select>
+
+            </div>
+
+            <div>
+                <h3 style="font-size:24px; position:absolute; top:838px; left:56px;">Освіта</h3>
+
+                <input asp-for="@Model.worker.education" value="@Model.worker.education" placeholder="Education" style="position:absolute; width:290px; height:43px;
+            left:57px; top:877px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
+
+                <select style="position:absolute; width:142px; height:43px; left:371px; top:877px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;"
+                        asp-for="@Model.worker.educationDegree" class="form-select" aria-label="@Model.worker.educationDegree">
+                    <option value="Junior Bakhelor">Junior Bakhelor</option>
+                    <option value="Junior specialist">Junior Specialist</option>
+                    <option value="Bakhelor">Bakhelor</option>
+                    <option value="Master's degree'">Master's degree'</option>
+                    <option value="Doctor of philosophy/arts">Doctor of philosofy/arts</option>
+                    <option value="PHD">PHD</option>
+                </select>
+
+
+
+                <select style="position:absolute; width:142px; height:43px; left:532px; top:877px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;"
+                        asp-for="@Model.worker.graduationYear" class="form-select" aria-label="@Model.worker.graduationYear">
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                    <option value="2026">2026</option>
+                </select>
+
+
+            </div>
+
+            <div>
+                <h3 style="font-size:24px; position:absolute; top:1036px; left:56px;">Ключові навички</h3>
+
+                <input asp-for="@Model.worker.skills" value="@Model.worker.skills" placeholder="Skills" style="position:absolute; width:390px; height:77px;
+            left:57px; top:1075px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
+
+
+                <select style="position:absolute; width:92px; height:77px; left:587px; top:1075px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;"
+                        asp-for="@Model.worker.expirience" class="form-select" aria-label="@Model.worker.expirience">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  
+                </select>
+
+                
+            </div>
+
+
+            <div>
+                <h3 style="font-size:24px; position:absolute; top:1188px; left:56px;">Мови</h3>
+
+                <input asp-for="@Model.worker.languages" value="@Model.worker.languages" placeholder="Languages" style="position:absolute; width:390px; height:77px;
+            left:57px; top:1227px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
+            </div>
+
+        </form>
+    </div>
+    <script>
+        const defaultImageSrc = "./img/mainim.png"
+
+        const [values, setValues] = useState(initialFieldValues)
+        const showPreview = e => {
+            if (e.target.files && e.target.files[0]) {
+                let imageFile = e.target.files[0];
+                const reader = new FileReader();
+                reader.onload = x => {
+                    setValues({
+                        ...values, imageFile, imageSrc: x.target.result
+                    })
                 }
-                else
-                {<input value="@Model.worker.desirework" asp-for="@Model.worker.desirework" style="position:static; margin-top:15px; margin-left:25px" />
-                }
-
-                if (Model.worker.desiresalary == null || Model.worker.desiresalary == 0)
-                {
-                    <p style="position: static;  margin-top:30px; margin-left: 25px;">Вкажіть бажану зарплату</p>
-                    <input asp-for="@Model.worker.desiresalary" />
-                }
-                else
-                {<input asp-for="@Model.worker.desiresalary" value="@Model.worker.desiresalary" style="position:static; margin-top:30px; margin-left:25px" /> }
-
+            } else {
+                setValues({
+                    ...values, imageFile: null,
+                    imageSrc: defaultImageSrc
+                })
             }
-
-
-            <button style="position:static; margin-left:25px;">Редагувати</button>
-
-        </div>
-
-        <div style="position:static; margin-top:25px; background:white; height:150px; width:600px;">
-            <h3 style="position:static; margin-left:20px; background:white;  ">Освіта</h3>
-
-            @{
-
-                if (string.IsNullOrEmpty(Model.worker.education))
-                {
-                    <p style="position:static; margin-left:25px;">Вкажіть освіту</p>
-                    <input asp-for="@Model.worker.education" />
-                }
-                else
-                {<input asp-for="@Model.worker.education" value="@Model.worker.education" style="position:static; margin-top:30px; margin-left:25px" /> }
-
-            }
-            <button style="position:static; margin-left:25px;">Редагувати</button>
-        </div>
-
-        <div style="position:static; margin-top:25px; background:white; height:150px; width:600px;">
-            <h3 style="position:static; margin-left:20px; background:white;  ">Ключові навички</h3>
-
-            @{
-
-                if (string.IsNullOrEmpty(Model.worker.skills))
-                {
-                    <p style="position:static; margin-left:25px;">Вкажіть Ваші навички</p>
-                    <input asp-for="@Model.worker.skills" />
-                }
-                else
-                {<input asp-for="@Model.worker.skills" value="@Model.worker.skills" style="position:static; margin-top:30px; margin-left:25px" /> }
-
-            }
-            <button style="position:static; margin-left:25px;">Редагувати</button>
-        </div>
-
-        <div style="position:static; margin-top:25px; background:white; height:150px; width:600px;">
-            <h3 style="position:static; margin-left:20px; background:white;  ">Володіння мовами</h3>
-
-            @{
-
-                if (string.IsNullOrEmpty(Model.worker.languages))
-                {
-                    <p style="position:static; margin-left:25px;">Вкажіть мови, які ви знаєте</p>
-                    <input asp-for="@Model.worker.languages" />
-                }
-                else
-                {<input asp-for="@Model.worker.languages" value="@Model.worker.languages" style="position:static; margin-top:30px; margin-left:25px" /> }
-
-            }
-            <button style="position:static; margin-left:25px;">Редагувати</button>
-        </div>
-
-        <div style="position:static; margin-top:25px; background:white; height:150px; width:600px;">
-
-
-            <input type="file" accept=".pdf"
-                   value="@Model.worker.resumeSrc" asp-for="@Model.worker.resumeFile" />
-
-
-
-            <button style="position:static; margin-left:25px;">Завантажити</button>
-        </div>
-    </form>
-
-    <script src="./js/jquery.js"></script>
-    <script src="./js/profile.js"></script>
+        }
+    </script>
 
 </body>

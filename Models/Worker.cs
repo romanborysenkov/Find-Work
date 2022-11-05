@@ -19,7 +19,7 @@ namespace FindWorkRazor.Models
         public string secondname { get; set; } = string.Empty;
 
         [Required]
-        public DateOnly age { get; set; }
+        public int age { get; set; }
 
         [Required]
         [DataType(DataType.EmailAddress)]
@@ -41,11 +41,18 @@ namespace FindWorkRazor.Models
 
         public int desiresalary { get; set; }
 
-        public string? skills { get; set; } = string.Empty;
+        public string? employmentDegree { get; set; }
+
 
         public string? education { get; set; } = string.Empty;
 
+        public string? educationDegree { get; set; }
+
+        public int? graduationYear { get; set; }
+
         public int expirience { get; set; }
+
+        public string? skills { get; set; } = string.Empty;
 
         public string? languages { get; set; }
 
@@ -57,25 +64,6 @@ namespace FindWorkRazor.Models
         public IFormFile? photoFile { get; set; }
 
         public string? photoSrc { get; set; }
-
-        public string? resumeName { get; set; }
-
-        [NotMapped]
-        public IFormFile? resumeFile { get; set; }
-
-      
-        public string? resumeSrc { get; set; }
-
-       /* public string? imageName { get; set; } = string.Empty;
-
-        [NotMapped]
-        public IFormFile? imageFile { get; set; }
-
-        [NotMapped]
-        public string? imageSrc { get; set; }
-       */
-
-
 
          //   [Column(TypeName = "nvarchar(50)")]
     }

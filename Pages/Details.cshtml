@@ -8,12 +8,24 @@
 <head>
     <link rel="stylesheet" href="~/css/vdetails.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/sidebar.css" asp-append-version="true" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100;200;300;600;700&display=swap" rel="stylesheet">
+
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 </head>
 
+<style>
+    body {
+        font-family: 'Exo 2', sans-serif;
+    }
+</style>
+
 <header class="header">
-    <h1 class="jobwrite">JOB FAST</h1>
+    <h1 asp-page="/Index" class="jobwrite"><a style="color:white;" asp-page="/Index">JOB FAST</a></h1>
     <form method="post">
         <p>
             <input placeholder="Пошук по професії" class="find" type="text" asp-for="SearchString" />
@@ -37,21 +49,38 @@
     <h2 class="vacancyname">@Model.Vacancy.vacancyname</h2>
 
     <form method="post">
-    <button asp-route-id="@Model.Vacancy.vacancyId" asp-page-handler="Response" id="resp" class="response">Відгукнутись</button>
+
+        @if(Model.isResponded)
+            {
+
+            }
+            else
+            {
+                <button asp-route-id="@Model.Vacancy.vacancyId" asp-page-handler="Response" id="resp" class="response">Відгукнутись</button>
+            }
+    
     </form>
 
+    <div style="position: absolute; width: 1020px; height: 2px; left: 213px; top: 227px; background: #D9D9D9 "> </div>
 
-
-    <div style="position:absolute; left:247px; top:230px;">
+    <div style="position:absolute; left:297px; top:245px;">
         <p>@Model.Vacancy.publishtime @Model.Vacancy.company @Model.Vacancy.location</p>
 
-        <p style="width:954px; height:auto;">@Model.Vacancy.description</p>
+        <p style="width:854px; height:auto;">@Model.Vacancy.description</p>
         <h4>What do you need:</h4>
-        <p style="width:954px;">@Model.Vacancy.requires</p>
+        <p style="width:854px;">@Model.Vacancy.requires</p>
 
         <h4>Offer: </h4>
-        <p style="width:954px;">@Model.Vacancy.offer</p>
-        <button class="downresp">Відгукнутись</button>
+        <p style="width:854px;">@Model.Vacancy.offer</p>
+
+        <form method="post">
+            @if (Model.isResponded)
+            {
+                <h6>You are already responded on this vacancy</h6>
+            }
+            else
+            { <button class="downresp">Відгукнутись</button>}
+        </form>
     </div>
 
     <script src="./js/jquery.js"></script>
@@ -70,12 +99,12 @@
                                 <div style="width:305px;">
                                     <a asp-page="./Details" asp-route-id="@item.vacancyId" class="list-group-item list-group-item-action">
                                         <div>
-                                            <h5>@Html.DisplayFor(modelItem => item.vacancyname)</h5>
+                                            <h5> @item.vacancyname</h5>
                                         </div>
-                                        <small class="text-muted">@Html.DisplayFor(modelItem => item.company)</small>
-                                        <small class="text-muted">  @Html.DisplayFor(modelItem => item.location)</small>
+                                        <small class="text-muted">@item.company</small>
+                                        <small class="text-muted">  @item.location</small>
 
-                                        <small>@Html.DisplayFor(modelItem => item.category)</small>
+                                        <small>@item.category</small>
                                       
                                     </a>
                                 </div>

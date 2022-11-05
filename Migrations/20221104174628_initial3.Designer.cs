@@ -3,6 +3,7 @@ using System;
 using FindWorkRazor.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FindWorkRazor.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20221104174628_initial3")]
+    partial class initial3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.3");
@@ -111,6 +113,9 @@ namespace FindWorkRazor.Migrations
 
                     b.Property<int?>("graduationYear")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("imageName")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("languages")
                         .HasColumnType("TEXT");
