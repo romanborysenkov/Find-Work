@@ -11,19 +11,42 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FindWorkRazor.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221104180129_initial4")]
-    partial class initial4
+    [Migration("20221107230045_highLevel")]
+    partial class highLevel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.3");
 
+            modelBuilder.Entity("FindWorkRazor.Models.InterviewCall", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Called")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("HRId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("WorkerId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("interviewCalls");
+                });
+
             modelBuilder.Entity("FindWorkRazor.Models.Responses", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("OwnerId")
+                        .HasColumnType("TEXT");
 
                     b.Property<int?>("VacancyId")
                         .HasColumnType("INTEGER");
@@ -34,6 +57,98 @@ namespace FindWorkRazor.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("responses");
+                });
+
+            modelBuilder.Entity("FindWorkRazor.Models.Resume", b =>
+                {
+                    b.Property<int?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("age")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("desireSalary")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("desireWork")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("education")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("educationDegree")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("employmentDegree")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("expirience")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("graduationYear")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("languages")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("photoName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("photoSrc")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("publishTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("skills")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("userId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("resumes");
+                });
+
+            modelBuilder.Entity("FindWorkRazor.Models.User", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("email")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("firstname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("isEmployer")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("phone")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("salt")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("saltedhashedpassword")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("secondname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("users");
                 });
 
             modelBuilder.Entity("FindWorkRazor.Models.Vacancy", b =>
@@ -57,7 +172,7 @@ namespace FindWorkRazor.Migrations
                     b.Property<string>("offer")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateOnly?>("publishtime")
+                    b.Property<DateTime?>("publishtime")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("requires")
@@ -66,84 +181,15 @@ namespace FindWorkRazor.Migrations
                     b.Property<int>("salary")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("userId")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("vacancyname")
                         .HasColumnType("TEXT");
 
                     b.HasKey("vacancyId");
 
                     b.ToTable("vacancies");
-                });
-
-            modelBuilder.Entity("FindWorkRazor.Models.Worker", b =>
-                {
-                    b.Property<string>("workerId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Location")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("age")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("desiresalary")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("desirework")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("education")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("educationDegree")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("email")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("employmentDegree")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("expirience")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("firstname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int?>("graduationYear")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("languages")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("photoName")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("photoSrc")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("salt")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("saltedhashedpassword")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("secondname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("skills")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("workerphone")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("workerId");
-
-                    b.ToTable("workers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

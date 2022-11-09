@@ -1,0 +1,147 @@
+﻿@page
+@model FindWorkRazor.Pages.RespondedEmployersModel
+@{
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/profile.css" asp-append-version="true" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100;200;300;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/css/sidebar.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+</head>
+
+
+
+<style>
+
+    body {
+        background-color: #F5F5F5;
+        font-family: 'Exo 2', sans-serif;
+    }
+
+    html {
+        background-color: #F5F5F5;
+    }
+</style>
+
+
+<header>
+    <div style="position:absolute; left:0px; width: 100%; height: 100px; background: #E05B49">
+        <h1 style="position: absolute; width: 200px; height: 33.9px; top: 33px; left: 100.48px; border-radius:407.177px; color: white" id="title"><a style="color:white;" asp-page="/Index">JOB FAST</a></h1>
+
+
+
+        <div class="logwind" style="display:none; max-width: 600px;" id="mod">
+            <h3>Are you sure you want to logout?</h3>
+            <form asp-page-handler="Logout" method="post">
+                <button class="btn btn-primary" asp-page-handler="Logout">Yes</button>
+                <button data-fancybox-close class="btn btn-light ml-4 border-dark" asp-page-handler="DontLogout">No</button>
+            </form>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+        <input type="checkbox" id="check" />
+        <label for="check">
+            <p style="position:absolute; left:1184px; top:40px;" id="btn">@Model.worker.secondname<img style="height:24px; width:25px;" src="~/img/user.png" /> </p>
+            <i id="close"><img style="width:50px; height:50px;" src="~/img/close.png" /></i>
+        </label>
+
+        <div class="sidebar">
+            <header>
+                <h3 style="font-size:20px; margin-left:30px; position:absolute; top:29px;"> @Model.worker.secondname</h3>
+                <p style="font-size:18px; margin-left:35px; position:absolute; top:62px;">+@Model.worker.phone</p>
+            </header>
+
+            <ul>
+                <li style="margin-left:35px;margin-top:30px; position:absolute;">
+                    <a style="color:black; font-size:18px;" asp-page="/Profile"><img style="height:20px; width:20px;" src="~/img/resume.png" />  My resume</a>
+                </li>
+                <li style="margin-left:35px; margin-top:68px; position:absolute;">
+                    <a style="color: black; font-size:18px;" asp-page="/MyResponses">My responses</a>
+                </li>
+                <li style="margin-left:35px; margin-top:106px; position:absolute;">
+                    <a style="color: black; font-size:18px;" asp-page="/RespondedEmployers">Responded Employers</a>
+                </li>
+            </ul>
+            <ul>
+                <li id="logout">
+                    <a style="color:red;" data-fancybox data-src="#mod" data-modal="true" href="javascript:;">Logout</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</header>
+
+
+
+
+<body>
+    <h3 style="color:black; width:339px; height:43px; position:absolute; left:550px; top:339px; font-style:normal;
+font-weight:700; font-size:36px; line-height:43px; text-align:center; letter-spacing:0.02em;">
+        Вони відповіли
+    </h3>
+
+    <table style="position:absolute; top:400px;">
+
+        <tbody>
+            @{
+                for (int item = 0; item < Model.HRS.Count; item += 2)
+                {
+                    if (item >= Model.HRS.Count - 1)
+                    {
+                        <tr>
+                            <td class="position-static top-100 float-start" style="display:flex; flex-direction:column; align-items:flex-start; padding:20px; gap:12px;
+                             margin-top:20px; margin-left: 0px; background-color: white; height: 113px; width: 387px; border-radius:10px">
+                                <a asp-page="./EmployerDetails" asp-route-id="@Model.HRS[item].Id">
+                                    <div>
+                                        <h5>@Model.HRS[item].firstname @Model.HRS[item].secondname</h5>
+                                    </div>
+                                    <small class="text-muted"> @Model.HRS[item].email</small>
+                                    <small> @Model.HRS[item].phone</small>
+                                </a>
+                            </td>
+                        </tr>
+                        break;
+                    }
+                    else
+                    {
+                        <tr>
+
+                            <td class="position-static top-100 float-start" style="display: flex; flex-direction: column;  padding: 20px; gap: 12px;
+                margin-top:20px; margin-left: 0px; background-color: white; height: 113px; width: 387px; border-radius:10px">
+                                <a asp-page="./EmployerDetails" asp-route-id="@Model.HRS[item].Id">
+                                    <div>
+                                        <h5>@Model.HRS[item].firstname @Model.HRS[item].secondname</h5>
+                                    </div>
+                                    <small class="text-muted"> @Model.HRS[item].email</small>
+                                    <small> @Model.HRS[item].phone</small>
+                                </a>
+                            </td>
+
+                            <td class="position-static top-100 float-center" style="display: flex; flex-direction: column;  padding: 20px; gap: 12px;
+                margin-top:20px; margin-left: 428px; background-color: white; height: 113px; width: 387px; border-radius: 10px;">
+                                <a asp-page="./EmployerDetails" asp-route-id="@Model.HRS[item+1].Id">
+                                    <div>
+                                        <h5>@Model.HRS[item].firstname @Model.HRS[item].secondname</h5>
+                                    </div>
+                                    <small class="text-muted"> @Model.HRS[item + 1].email</small>
+                                    <small> @Model.HRS[item + 1].phone</small>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+
+    <script src="./js/jquery.js"></script>
+
+    <script src="./js/site.js"></script>
+</body>

@@ -1,5 +1,5 @@
 ﻿@page
-@model FindWorkRazor.Pages.MyResponsesModel
+@model FindWorkRazor.Pages.EmployerDetailsModel
 @{
 }
 
@@ -28,8 +28,6 @@
         background-color: #F5F5F5;
     }
 </style>
-
-
 
 <header>
     <div style="position:absolute; left:0px; width: 100%; height: 100px; background: #E05B49">
@@ -60,13 +58,10 @@
 
             <ul>
                 <li style="margin-left:35px;margin-top:30px; position:absolute;">
-                    <a style="color:black; font-size:18px;" asp-page="./CreateVacancy"><img style="height:20px; width:20px;" src="~/img/resume.png" />Create vacancy</a>
+                    <a style="color:black; font-size:18px;" asp-page="/Profile"><img style="height:20px; width:20px;" src="~/img/resume.png" />  My resume</a>
                 </li>
                 <li style="margin-left:35px; margin-top:68px; position:absolute;">
-                    <a style="color: black; font-size:18px;" asp-page="./RespondedPeople">Responded people</a>
-                </li>
-                <li style="margin-left:35px; margin-top:106px; position:absolute;">
-                    <a style="color:black; font-size:18px;" asp-page="./MyVacancies">My vacancies</a>
+                    <a style="color: black; font-size:18px;" asp-page="/MyResponses">My responses</a>
                 </li>
             </ul>
             <ul>
@@ -75,46 +70,71 @@
                 </li>
             </ul>
         </div>
-
     </div>
 </header>
-
 
 
 
 <body>
     <div style="background-color:white; position:absolute; left:349px; top:144px; width:736px; height:1681px;">
 
-        <a asp-page="/Index" style="color:black; position:absolute; left:34px; top:42px; font-size:20px;">
+        <a asp-page="/RespondedEmployers" style="color:black; position:absolute; left:34px; top:42px; font-size:20px;">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
 
             </svg>  Назад
         </a>
-        <h2 style="position: absolute; left: 287px; top: 39.5px; font-style: normal; font-size: 24px; color:#1A2E35;">My Responses</h2>
+        <h2 style="position: absolute; left: 287px; top: 39.5px; font-style: normal; font-size: 24px; color:#1A2E35;">@Model.employer.secondname @Model.employer.firstname</h2>
 
 
-        <table style="position:absolute; top:110px; left:50px;">
+        <div>
+            <h3 style="font-size:24px; position:absolute; top:116px; left:56px;">Особиста інформація*</h3>
+
+            <input readonly value="@Model.employer.firstname" placeholder="Name" style="position:absolute; width:100px; height:39px;
+            left:57px; top:155px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
+
+            <input readonly value="@Model.employer.secondname" placeholder="Surname" style="position:absolute; width:266px; height:39px;
+            left:181px; top:155px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
+
+
+
+
+            <input style="position: absolute; width: 162px; height: 39px; left: 57px; top: 255px; display: flex; flex-direction: row; align-items: center; padding: 10px 15px; gap: 10px; "
+                   value="@Model.employer.phone" readonly class="form-select" aria-label="@Model.employer.phone" />
+
+
+
+            <input readonly value="@Model.employer.email" placeholder="Email" style="position: absolute; width: 266px; height: 39px;
+         left: 241px; top: 255px; display: flex; flex-direction: row; align-items: center; padding: 10px 15px; gap: 10px;" />
+        </div>
+
+
+        <h3 style="color:black; width:339px; height:43px; position:absolute; left:202px; top:389px; font-style:normal;
+font-weight:700; font-size:32px; line-height:43px; text-align:center; letter-spacing:0.02em;">
+           Вакансії
+        </h3>
+
+        <table style="position:absolute; top:450px; left:50px;">
 
             <tbody>
                 @{
-                    for (int item = 0; item < Model.finalList.Count; item += 2)
+                    for (int item = 0; item < Model.vacancies.Count; item += 2)
                     {
 
-                        if (item >= Model.finalList.Count - 1)
+                        if (item >= Model.vacancies.Count - 1)
                         {
                             <tr>
 
                                 <td class="position-static top-100 float-start" style="display: flex; flex-direction: column; align-items: flex-start; padding: 20px;
                                 gap: 12px; margin-top: 20px; margin-left: 0px; background-color: #F5F5F5; height: 113px; width: 287px; border-radius: 10px">
-                                    <a asp-page="/Details" asp-route-id="@Model.finalList[item].vacancyId">
+                                    <a asp-page="/Details" asp-route-id="@Model.vacancies[item].vacancyId">
                                         <div>
-                                            <h5>@Model.finalList[item].vacancyname</h5>
+                                            <h5>@Model.vacancies[item].vacancyname</h5>
                                         </div>
 
-                                        <small class="text-muted"> @Model.finalList[item]company.</small>
+                                        <small class="text-muted"> @Model.vacancies[item]company.</small>
 
-                                        <small> @Model.finalList[item].publishtime</small>
+                                        <small> @Model.vacancies[item].publishtime</small>
 
                                     </a>
 
@@ -129,41 +149,35 @@
 
                                 <td class="position-static top-100 float-start" style="display: flex; flex-direction: column; padding: 20px; gap: 12px; margin-top: 20px;
                                 margin-left: 0px; background-color: #F5F5F5; height: 113px; width: 287px; border-radius: 10px">
-                                    <a asp-page="/Details" asp-route-id="@Model.finalList[item].vacancyId">
+                                    <a asp-page="/Details" asp-route-id="@Model.vacancies[item].vacancyId">
                                         <div>
-                                            <h5>@Model.finalList[item].vacancyname</h5>
+                                            <h5>@Model.vacancies[item].vacancyname</h5>
                                         </div>
-                                        <small class="text-muted"> @Model.finalList[item].company</small>
-                                        <small> @Model.finalList[item].publishtime</small>
+                                        <small class="text-muted"> @Model.vacancies[item].company</small>
+                                        <small> @Model.vacancies[item].publishtime</small>
                                     </a>
 
                                 </td>
 
                                 <td class="position-static top-100 float-center" style="display: flex; flex-direction: column; padding: 20px; gap: 12px;
                             margin-top: 20px; margin-left: 388px; background-color: #F5F5F5; height: 113px; width: 287px; border-radius: 10px;">
-                                    <a asp-page="/Details" asp-route-id="@Model.finalList[item+1].vacancyId">
+                                    <a asp-page="/Details" asp-route-id="@Model.vacancies[item+1].vacancyId">
                                         <div>
-                                            <h5>@Model.finalList[item + 1].vacancyname</h5>
+                                            <h5>@Model.vacancies[item + 1].vacancyname</h5>
                                         </div>
-                                        <small class="text-muted"> @Model.finalList[item + 1].company</small>
-                                        <small> @Model.finalList[item + 1].publishtime</small>
+
+                                        <small class="text-muted"> @Model.vacancies[item + 1].company</small>
+
+                                        <small> @Model.vacancies[item + 1].publishtime</small>
+
                                     </a>
+
                                 </td>
                             </tr>
                         }
                     }
                 }
-
             </tbody>
-
         </table>
-
-    </div>
-
-
-    <script src="./js/jquery.js"></script>
-    <script src="./js/site.js"></script>
+</div>
 </body>
-
-
-

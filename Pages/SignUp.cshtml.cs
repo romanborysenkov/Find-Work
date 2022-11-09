@@ -16,8 +16,11 @@ namespace FindWorkRazor.Pages
         private readonly SignInManager<IdentityUser> signInManager;
         private DataContext _context;
 
+      //  [BindProperty]
+        //public Worker Model { get; set; }
+
         [BindProperty]
-        public Worker Model { get; set; }
+        public User Model { get; set; }
 
         public SignUpModel(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, DataContext context)
         {
@@ -36,31 +39,34 @@ namespace FindWorkRazor.Pages
             if (ModelState.IsValid)
             {
 
-                var worker = new IdentityUser()
+                var IdUser = new IdentityUser()
                 {
-                   UserName = Model.secondname,
+                   UserName = Model.email,
                    Email = Model.email,
-                   PhoneNumber = Model.workerphone,
+                   PhoneNumber = Model.phone,
                 };
 
-                var forw = new Worker()
+                var forw = new User()
                 {
-                    workerId = worker.Id,
+                    Id = IdUser.Id,
                     firstname = Model.firstname,
                     secondname = Model.secondname,
                     email = Model.email,
                     salt = Model.salt,
-                    workerphone = Model.workerphone,
-                    age = Model.age
+                    phone = Model.phone,
+                    isEmployer = Model.isEmployer
                 };
 
-                var result = await userManager.CreateAsync(worker, Model.salt);
+                var result = await userManager.CreateAsync(IdUser, Model.salt);
                 if (result.Succeeded)
                 {
-                    _context.workers.Add(forw);
+                    _context.users.Add(forw);
                     await _context.SaveChangesAsync();
-                    await signInManager.SignInAsync(worker, false);
-                    return RedirectToPage("Index");
+                    await signInManager.SignInAsync(IdUser, false);
+
+                    if (Model.isEmployer) return RedirectToPage("./Employer/Index");
+                       else return RedirectToPage("Index");
+                    
                 }
 
                 foreach (var error in result.Errors)

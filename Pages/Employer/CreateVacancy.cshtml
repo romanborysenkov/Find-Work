@@ -1,0 +1,110 @@
+﻿@page
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> signInManager;
+@model FindWorkRazor.Pages.Employer.CreateVacancyModel
+@{  ViewData["Title"] = "Create Vacancy";
+}
+
+
+<head>
+    <link rel="stylesheet" href="~/css/vdetails.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/main.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/sidebar.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/filters.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100;200;300;600;700&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+</head>
+
+<header class="header">
+    <h1 asp-page="/Index" class="jobwrite"><a style="color:white;" asp-page="/Index">JOB FAST</a></h1>
+
+    @{
+        if (signInManager.IsSignedIn(User))
+        {
+            <div>
+                <a id="sidebarCollapse" class="username">@Model.employer.secondname</a>
+            </div>
+        }
+    }
+</header>
+
+
+<body>
+    <div style="background-color:white; position:absolute; left:349px; top:144px; width:736px; height:1681px;">
+
+        <a asp-page="/Index" style="color:black; position:absolute; left:34px; top:42px; font-size:20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+
+            </svg>  Назад
+        </a>
+        <h2 style="position: absolute; left: 237px; top: 39.5px; font-style: normal; font-size: 24px; color:#1A2E35;">Створення вакансії</h2>
+
+
+            <form method="post">
+
+
+                <button style="display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 14px 34px; gap: 10px;
+          width: 140px; height: 44px; background-color: #E05B49; border-radius:10px; position:absolute; left:530px; color:white; top:32px;">
+                  Створити
+                </button>
+
+                <div>
+                    <h3 style="font-size:24px; position:absolute; top:140px; left:50px;">Основні дані</h3>
+
+                    <input asp-for="@Model.vacancy.vacancyname" placeholder="Vacancy name" style="position: absolute;
+         width: 200px; height: 39px; left: 57px; top: 205px; display: flex; flex-direction: row; align-items: center; padding: 10px 15px; gap: 10px;" />
+
+
+                    <input asp-for="@Model.vacancy.category" placeholder="Category" style="position:absolute; width:166px; height:39px;
+            left:281px; top:205px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
+
+
+                    <input placeholder="Company" style="position: absolute; width: 142px; height: 39px; left: 471px; top: 205px; display: flex; flex-direction: row; align-items: center; padding: 10px 15px; gap: 10px; "
+                           asp-for="@Model.vacancy.company" />
+
+
+                    <input  asp-for="@Model.vacancy.salary" type="text" placeholder="Salary" style="position: absolute;
+         width: 150px; height: 39px; left: 57px; top: 280px; display: flex; flex-direction: row; align-items: center; padding: 10px 15px; gap: 10px;" />
+
+
+                    <input asp-for="@Model.vacancy.location" placeholder="Location" style="position:absolute; width:266px; height:39px;
+            left:231px; top:280px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
+
+                </div>
+
+                <div>
+                    <h3 style="font-size:24px; position:absolute; top:360px; left:50px;">Трохи подумай</h3>
+
+                    <textarea asp-for="@Model.vacancy.requires" placeholder="Requires" style="position:absolute; width:266px; height:166px;
+left:57px; top:425px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;">
+        
+                    </textarea>
+
+                    <textarea asp-for="@Model.vacancy.offer" placeholder="Offer" style="position:absolute; width:266px; height:166px;
+left:355px; top:425px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;">
+        
+                    </textarea>
+
+                    <textarea asp-for="@Model.vacancy.description" placeholder="Description" style="position:absolute; width:266px; height:166px;
+left:57px; top:655px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;">
+
+                </textarea>
+
+                </div>
+
+
+            </form>
+        
+
+    </div>
+</body>
+
+
+

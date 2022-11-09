@@ -19,17 +19,19 @@ namespace FindWorkRazor.Pages
         {
             _context = context;
         }
-      public List<Responses> vacancies { get; set; }
+     
 
         public List<Vacancy> finalList { get; set; } = new List<Vacancy>();//{ get; set; }
 
+       public User worker = new User();
+
         public async void OnGet()
         {
-            var worker = await _context.workers.FirstAsync(s => s.secondname == User.Identity.Name);
+            worker = await _context.users.FirstAsync(s => s.email == User.Identity.Name);
 
-          var  vacancies2 = _context.responses.Where(x=>x.WorkerId==worker.workerId);
+          var  vacancies =await _context.responses.Where(x=>x.WorkerId==worker.Id).ToListAsync();
 
-            vacancies =await vacancies2.ToListAsync();
+           // vacancies =await vacancies2.ToListAsync();
 
             for (int i = 0; i < vacancies.Count; i++)
             {

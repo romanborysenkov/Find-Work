@@ -35,7 +35,7 @@ namespace FindWorkRazor.Pages
 
         public Vacancy Vacancy { get; set; } = default!;
 
-        Worker worker = new Worker();
+       public User worker = new User();
 
         IQueryable<Responses> responsies { get; set; }
 
@@ -43,27 +43,45 @@ namespace FindWorkRazor.Pages
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            worker = await _context.workers.FirstAsync(s => s.secondname == User.Identity.Name);
-
-             Vacancy = await _context.vacancies.FirstOrDefaultAsync(x => x.vacancyId == id);
-
-            responsies =  _context.responses.Where(x =>x.WorkerId==worker.workerId);
-
-            foreach (var vac in responsies)
+            Vacancy = await _context.vacancies.FirstOrDefaultAsync(x => x.vacancyId == id);
+            if (signinManager.IsSignedIn(User))
             {
-                if(vac.VacancyId==Vacancy.vacancyId)
+                worker = await _context.users.FirstAsync(s => s.email == User.Identity.Name);
+                responsies = _context.responses.Where(x => x.WorkerId == worker.Id);
+
+                foreach (var vac in responsies)
                 {
-                    isResponded = true;
-                    break;
+                    if (vac.VacancyId == Vacancy.vacancyId)
+                    {
+                        isResponded = true;
+                        break;
+                    }
                 }
-            }
+            } 
             return Page();
         }
 
         public async Task OnPostVacanciesAsync(int? id)
         {
-            var vacancy = await _context.vacancies.FirstOrDefaultAsync(x => x.vacancyId == id);
-           
+            Vacancy = await _context.vacancies.FirstOrDefaultAsync(x => x.vacancyId == id);
+
+
+
+            if (signinManager.IsSignedIn(User))
+            {
+                worker = await _context.users.FirstAsync(s => s.email == User.Identity.Name);
+                responsies = _context.responses.Where(x => x.WorkerId == worker.Id);
+
+                foreach (var vac in responsies)
+                {
+                    if (vac.VacancyId == Vacancy.vacancyId)
+                    {
+                        isResponded = true;
+                        break;
+                    }
+                }
+            }
+
 
             var vacancies1 = from m in _context.vacancies select m;
             if(!string.IsNullOrEmpty(SearchString))
@@ -80,19 +98,19 @@ namespace FindWorkRazor.Pages
 
             if (signinManager.IsSignedIn(User))
             {
-                 worker = await _context.workers.FirstAsync(s => s.secondname == User.Identity.Name);
+                 worker = await _context.users.FirstAsync(s => s.email == User.Identity.Name);
 
                 Responses response = new Responses()
                 {
-                    WorkerId = worker.workerId,
-                    VacancyId = id
+                    WorkerId = worker.Id,
+                    VacancyId = id,
+                    OwnerId = Vacancy.userId
                 };
 
                 await _context.responses.AddAsync(response);
                 _context.SaveChangesAsync();
 
-                responsies = _context.responses.Where(x => x.WorkerId == worker.workerId);
-                //Vacancy = vacancy;
+                responsies = _context.responses.Where(x => x.WorkerId == worker.Id);
 
                 foreach (var vac in responsies)
                 {
@@ -103,13 +121,7 @@ namespace FindWorkRazor.Pages
                     }
                 }
             }
-            else
-            {
-               
-            }
-
-           
-
+            else{ }
         }
     }
 }

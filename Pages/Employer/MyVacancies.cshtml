@@ -1,5 +1,7 @@
 ﻿@page
-@model FindWorkRazor.Pages.MyResponsesModel
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> signInManager;
+@model FindWorkRazor.Pages.Employer.MyVacanciesModel
 @{
 }
 
@@ -30,7 +32,6 @@
 </style>
 
 
-
 <header>
     <div style="position:absolute; left:0px; width: 100%; height: 100px; background: #E05B49">
         <h1 style="position: absolute; width: 200px; height: 33.9px; top: 33px; left: 100.48px; border-radius:407.177px; color: white" id="title"><a style="color:white;" asp-page="/Index">JOB FAST</a></h1>
@@ -48,14 +49,14 @@
         <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
         <input type="checkbox" id="check" />
         <label for="check">
-            <p style="position:absolute; left:1184px; top:40px;" id="btn">@Model.worker.secondname<img style="height:24px; width:25px;" src="~/img/user.png" /> </p>
+            <p style="position:absolute; left:1184px; top:40px;" id="btn">@Model.employer.secondname<img style="height:24px; width:25px;" src="~/img/user.png" /> </p>
             <i id="close"><img style="width:50px; height:50px;" src="~/img/close.png" /></i>
         </label>
 
         <div class="sidebar">
             <header>
-                <h3 style="font-size:20px; margin-left:30px; position:absolute; top:29px;"> @Model.worker.secondname</h3>
-                <p style="font-size:18px; margin-left:35px; position:absolute; top:62px;">+@Model.worker.phone</p>
+                <h3 style="font-size:20px; margin-left:30px; position:absolute; top:29px;"> @Model.employer.secondname</h3>
+                <p style="font-size:18px; margin-left:35px; position:absolute; top:62px;">+@Model.employer.phone</p>
             </header>
 
             <ul>
@@ -75,12 +76,8 @@
                 </li>
             </ul>
         </div>
-
     </div>
 </header>
-
-
-
 
 <body>
     <div style="background-color:white; position:absolute; left:349px; top:144px; width:736px; height:1681px;">
@@ -91,79 +88,58 @@
 
             </svg>  Назад
         </a>
-        <h2 style="position: absolute; left: 287px; top: 39.5px; font-style: normal; font-size: 24px; color:#1A2E35;">My Responses</h2>
+        <h2 style="position: absolute; left: 287px; top: 39.5px; font-style: normal; font-size: 24px; color:#1A2E35;">Мої вакансії</h2>
 
-
-        <table style="position:absolute; top:110px; left:50px;">
-
+        <table style="position:absolute; top:150px; left:50px;">
             <tbody>
                 @{
-                    for (int item = 0; item < Model.finalList.Count; item += 2)
+                    for (int item = 0; item < Model.vacancies.Count; item += 2)
                     {
-
-                        if (item >= Model.finalList.Count - 1)
+                        if (item >= Model.vacancies.Count - 1)
                         {
                             <tr>
-
                                 <td class="position-static top-100 float-start" style="display: flex; flex-direction: column; align-items: flex-start; padding: 20px;
                                 gap: 12px; margin-top: 20px; margin-left: 0px; background-color: #F5F5F5; height: 113px; width: 287px; border-radius: 10px">
-                                    <a asp-page="/Details" asp-route-id="@Model.finalList[item].vacancyId">
+                                    <a asp-page="/Details" asp-route-id="@Model.vacancies[item].vacancyId">
                                         <div>
-                                            <h5>@Model.finalList[item].vacancyname</h5>
+                                            <h5>@Model.vacancies[item].vacancyname</h5>
                                         </div>
-
-                                        <small class="text-muted"> @Model.finalList[item]company.</small>
-
-                                        <small> @Model.finalList[item].publishtime</small>
-
+                                        <small class="text-muted"> @Model.vacancies[item]company.</small>
+                                        <small> @Model.vacancies[item].publishtime</small>
                                     </a>
-
                                 </td>
-
                             </tr>
                             break;
                         }
                         else
                         {
                             <tr>
-
                                 <td class="position-static top-100 float-start" style="display: flex; flex-direction: column; padding: 20px; gap: 12px; margin-top: 20px;
                                 margin-left: 0px; background-color: #F5F5F5; height: 113px; width: 287px; border-radius: 10px">
-                                    <a asp-page="/Details" asp-route-id="@Model.finalList[item].vacancyId">
+                                    <a asp-page="/Details" asp-route-id="@Model.vacancies[item].vacancyId">
                                         <div>
-                                            <h5>@Model.finalList[item].vacancyname</h5>
+                                            <h5>@Model.vacancies[item].vacancyname</h5>
                                         </div>
-                                        <small class="text-muted"> @Model.finalList[item].company</small>
-                                        <small> @Model.finalList[item].publishtime</small>
+                                        <small class="text-muted"> @Model.vacancies[item].company</small>
+                                        <small> @Model.vacancies[item].publishtime</small>
                                     </a>
-
                                 </td>
 
                                 <td class="position-static top-100 float-center" style="display: flex; flex-direction: column; padding: 20px; gap: 12px;
                             margin-top: 20px; margin-left: 388px; background-color: #F5F5F5; height: 113px; width: 287px; border-radius: 10px;">
-                                    <a asp-page="/Details" asp-route-id="@Model.finalList[item+1].vacancyId">
+                                    <a asp-page="/Details" asp-route-id="@Model.vacancies[item+1].vacancyId">
                                         <div>
-                                            <h5>@Model.finalList[item + 1].vacancyname</h5>
+                                            <h5>@Model.vacancies[item + 1].vacancyname</h5>
                                         </div>
-                                        <small class="text-muted"> @Model.finalList[item + 1].company</small>
-                                        <small> @Model.finalList[item + 1].publishtime</small>
+                                        <small class="text-muted"> @Model.vacancies[item + 1].company</small>
+                                        <small> @Model.vacancies[item + 1].publishtime</small>
                                     </a>
                                 </td>
                             </tr>
                         }
                     }
                 }
-
             </tbody>
-
         </table>
-
     </div>
-
-
-    <script src="./js/jquery.js"></script>
-    <script src="./js/site.js"></script>
 </body>
-
-
-

@@ -29,15 +29,41 @@
     <form method="post">
         <p>
             <input placeholder="Пошук по професії" class="find" type="text" asp-for="SearchString" />
-                <button asp-route-id="@Model.Vacancy.vacancyId" asp-page-handler="Vacancies" class="findb" type="submit">Знайти роботу</button>
+            <button asp-route-id="@Model.Vacancy.vacancyId" asp-page-handler="Vacancies" class="findb" type="submit">Знайти роботу</button>
         </p>
     </form>
     @{
         if (SignInManager.IsSignedIn(User))
         {
-            <div>
-                <a id="sidebarCollapse" class="username">@User.Identity.Name</a>
-            </div>   
+            <label for="check">
+                <p style="position:absolute; left:1184px; top:40px;" id="btn">@Model.worker.secondname<img style="height:24px; width:25px;" src="~/img/user.png" /> </p>
+                <i id="close"><img style="width:50px; height:50px;" src="~/img/close.png" /></i>
+            </label>
+
+            <div class="sidebar">
+                <header>
+                    <h3 style="font-size:20px; margin-left:30px; position:absolute; top:29px;"> @Model.worker.secondname</h3>
+                    <p style="font-size:18px; margin-left:35px; position:absolute; top:62px;">+@Model.worker.phone</p>
+                </header>
+
+                <ul>
+                    <li style="margin-left:35px;margin-top:30px; position:absolute;">
+                        <a style="color:black; font-size:18px;" asp-page="./CreateVacancy"><img style="height:20px; width:20px;" src="~/img/resume.png" />Create vacancy</a>
+                    </li>
+                    <li style="margin-left:35px; margin-top:68px; position:absolute;">
+                        <a style="color: black; font-size:18px;" asp-page="./RespondedPeople">Responded people</a>
+                    </li>
+                    <li style="margin-left:35px; margin-top:106px; position:absolute;">
+                        <a style="color:black; font-size:18px;" asp-page="./MyVacancies">My vacancies</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li id="logout">
+                        <a style="color:red;" data-fancybox data-src="#mod" data-modal="true" href="javascript:;">Logout</a>
+                    </li>
+                </ul>
+            </div>
+
         }
     }
 </header>
@@ -48,9 +74,15 @@
     <a class="back" asp-page="/Index">Назад</a>
     <h2 class="vacancyname">@Model.Vacancy.vacancyname</h2>
 
-    <form method="post">
+    @{      if (SignInManager.IsSignedIn(User))
+        {
 
-        @if(Model.isResponded)
+
+    <form method="post">
+    
+
+
+        @if (Model.isResponded)
             {
 
             }
@@ -58,8 +90,10 @@
             {
                 <button asp-route-id="@Model.Vacancy.vacancyId" asp-page-handler="Response" id="resp" class="response">Відгукнутись</button>
             }
-    
+        
     </form>
+        }
+        }
 
     <div style="position: absolute; width: 1020px; height: 2px; left: 213px; top: 227px; background: #D9D9D9 "> </div>
 
@@ -73,14 +107,18 @@
         <h4>Offer: </h4>
         <p style="width:854px;">@Model.Vacancy.offer</p>
 
+        @{ if (SignInManager.IsSignedIn(User))
+            {
         <form method="post">
             @if (Model.isResponded)
-            {
+                {
                 <h6>You are already responded on this vacancy</h6>
-            }
-            else
-            { <button class="downresp">Відгукнутись</button>}
+                }
+                else
+                { <button class="downresp">Відгукнутись</button>}
         </form>
+                }
+            }
     </div>
 
     <script src="./js/jquery.js"></script>

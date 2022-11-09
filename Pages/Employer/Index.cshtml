@@ -1,9 +1,8 @@
 ﻿@page
 @using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager;
-@model IndexModel
-@{
-    ViewData["Title"] = "Home page";
+@inject SignInManager<IdentityUser> signInManager;
+@model FindWorkRazor.Pages.Employer.IndexModel
+@{     ViewData["Title"] = "Home Page";
 }
 
 <head>
@@ -22,17 +21,16 @@
 </head>
 
 <style>
-    body {
-        font-family: 'Exo 2', sans-serif;
+    body{
+        font-family:'Exo 2', sans-serif;
     }
 </style>
-
 
 <header class="red">
     <h1 class="siten" id="title">JOB FAST</h1>
     <img class="mainimg" src="~/img/mainim.png" />
     @{
-        if (SignInManager.IsSignedIn(User))
+        if (signInManager.IsSignedIn(User))
         {
             <div class="logwind" style="display:none; max-width: 600px;" id="mod">
                 <h3>Are you sure you want to logout?</h3>
@@ -45,25 +43,25 @@
             <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
             <input type="checkbox" id="check" />
             <label for="check">
-                <p style="position:absolute; left:1184px; top:40px;" id="btn"> @Model.worker.secondname<img style="height:24px; width:25px;" src="~/img/user.png" /> </p>
+                <p style="position:absolute; left:1184px; top:40px;" id="btn">@Model.employer.secondname<img style="height:24px; width:25px;" src="~/img/user.png" /> </p>
                 <i id="close"><img style="width:50px; height:50px;" src="~/img/close.png" /></i>
             </label>
 
             <div class="sidebar">
                 <header>
-                    <h3 style="font-size:20px; margin-left:30px; position:absolute; top:29px;">@Model.worker.secondname</h3>
-                    <p style="font-size:18px; margin-left:35px; position:absolute; top:62px;">@Model.worker.phone </p>
+                    <h3 style="font-size:20px; margin-left:30px; position:absolute; top:29px;">@Model.employer.secondname </h3>
+                    <p style="font-size:18px; margin-left:35px; position:absolute; top:62px;">@Model.employer.phone</p>
                 </header>
 
                 <ul>
                     <li style="margin-left:35px;margin-top:30px; position:absolute;">
-                        <a style="color:black; font-size:18px;" asp-page="/Profile"><img style="height:20px; width:20px;" src="~/img/resume.png" />  My resume</a>
+                        <a style="color:black; font-size:18px;" asp-page="./CreateVacancy"><img style="height:20px; width:20px;" src="~/img/resume.png" />Create vacancy</a>
                     </li>
                     <li style="margin-left:35px; margin-top:68px; position:absolute;">
-                        <a style="color: black; font-size:18px;" asp-page="/MyResponses">My responses</a>
+                        <a style="color: black; font-size:18px;" asp-page="./RespondedPeople">Responded people</a>
                     </li>
                     <li style="margin-left:35px; margin-top:106px; position:absolute;">
-                        <a style="color: black; font-size:18px;" asp-page="/RespondedEmployers">Responded Employers</a>
+                        <a style="color:black; font-size:18px;" asp-page="./MyVacancies">My vacancies</a>
                     </li>
                 </ul>
                 <ul>
@@ -83,7 +81,7 @@
 
                 <form method="post">
 
-                    <input asp-for="Model.name" style="color:white; background-color: #E05B49; position: absolute; width: 291px; top: 67px; left: 119px;" class="form-control" placeholder="Email" type="text" />
+                    <input asp-for="Model.name" style="color:white; background-color: #E05B49; position: absolute; width: 291px; top: 67px; left: 119px;" class="form-control" placeholder="Sur name" type="text" />
                     <input asp-for="Model.salt" style="color:white; background-color: #E05B49; width: 291px; position: absolute; top: 146px; left: 119px;" class="form-control" placeholder="Password" type="password" />
                     <button class="logbutton" style="color:white;" type="submit">Log in</button>
                     <p style="color: white; position:absolute; top:280px; left: 118.5px;">Yet no registered? <a asp-page="/SignUp">Sign up</a></p>
@@ -97,119 +95,99 @@
         }
     }
 
-    <h2 style="position:absolute; width:282px; height:43px; left:100px; top:151px; color:#FFFFFF">Швидка робота</h2>
+    <h2 style="position:absolute; width:282px; height:43px; left:100px; top:151px; color:#FFFFFF">Швидкі працівники</h2>
 
 
-    <h3 class="dospeed">Зроби швидко своє резюме і знаходь роботу по душі</h3>
+    <h3 class="dospeed">Оформіть вакансію та шукайте працівників по душі</h3>
 
     <form>
         <p>
-            <input placeholder="Пошук по професії" class="find" type="text" asp-for="SearchString" />
-            <input class="findb" type="submit" value="Знайти роботу" />
+            <input placeholder="Пошук резюмерів" class="find" type="text" asp-for="SearchString" />
+            <input class="findb" type="submit" value="Знайти працівників" />
         </p>
     </form>
-
 </header>
-
 
 <body>
     <h3 style="color:black; width:339px; height:43px; position:absolute; left:550px; top:589px; font-style:normal;
 font-weight:700; font-size:36px; line-height:43px; text-align:center; letter-spacing:0.02em;">
-        Актуальні вакансії
+       Актуальні шукачі
     </h3>
 
     <table class="bod">
 
         <tbody>
             @{
-                for (int item = 0; item < Model.vacancies.Count; item += 2)
+                for (int item = 0; item < Model.resumes.Count; item += 2)
                 {
 
-                    if (item >= Model.vacancies.Count - 1)
+                    if (item >= Model.resumes.Count - 1)
                     {
                         <tr>
 
 
-                            <td class="position-static top-100 float-start"  style="display:flex; flex-direction:column; align-items:flex-start; padding:20px; gap:12px;
+                            <td class="position-static top-100 float-start" style="display:flex; flex-direction:column; align-items:flex-start; padding:20px; gap:12px;
                              margin-top:20px; margin-left: 0px; background-color: white; height: 113px; width: 387px; border-radius:10px">
-                                <a asp-page="./Details" asp-route-id="@Model.vacancies[item].vacancyId">
+                                <a asp-page="./ResumeDetails" asp-route-id="@Model.resumes[item].Id">
                                     <div>
-                                        <h5>@Model.vacancies[item].vacancyname</h5>
+                                        <h5>@Model.resumes[item].desireWork</h5>
                                     </div>
-                                  
-                                    <small class="text-muted"> @Model.vacancies[item].publishtime</small>
 
-                                    <small> @Model.vacancies[item].company</small>
-                                  
+                                    <small class="text-muted"> @Model.resumes[item].desireSalary</small>
+
+                                    <small> @Model.resumes[item].education</small>
+
                                 </a>
 
                             </td>
-                           
+
                         </tr>
-                    break;
-                }
-                else
-                {
-        <tr>
+                        break;
+                    }
+                    else
+                    {
+                        <tr>
 
-            <td class="position-static top-100 float-start" style="display: flex; flex-direction: column;  padding: 20px; gap: 12px;
+                            <td class="position-static top-100 float-start" style="display: flex; flex-direction: column;  padding: 20px; gap: 12px;
                 margin-top:20px; margin-left: 0px; background-color: white; height: 113px; width: 387px; border-radius:10px">
-                <a asp-page="./Details" asp-route-id="@Model.vacancies[item].vacancyId">
-                    <div>
-                        <h5>@Model.vacancies[item].vacancyname</h5>
-                    </div>
-                    <small class="text-muted"> @Model.vacancies[item].publishtime</small>
-                    <small> @Model.vacancies[item].company</small>
-                </a>
+                                <a asp-page="./ResumeDetails" asp-route-id="@Model.resumes[item].Id">
+                                    <div>
+                                        <h5>@Model.resumes[item].desireWork</h5>
+                                    </div>
+                                    <small class="text-muted"> @Model.resumes[item].desireSalary</small>
+                                    <small> @Model.resumes[item].education</small>
+                                </a>
 
-            </td>
+                            </td>
 
-            <td class="position-static top-100 float-center" style="display: flex; flex-direction: column;  padding: 20px; gap: 12px;
+                            <td class="position-static top-100 float-center" style="display: flex; flex-direction: column;  padding: 20px; gap: 12px;
                 margin-top:20px; margin-left: 428px; background-color: white; height: 113px; width: 387px; border-radius: 10px;">
-                <a asp-page="./Details" asp-route-id="@Model.vacancies[item+1].vacancyId">
-                    <div>
-                        <h5>@Model.vacancies[item + 1].vacancyname</h5>
-                    </div>
-                  
-                    <small class="text-muted"> @Model.vacancies[item + 1].publishtime</small>
+                                <a asp-page="./ResumeDetails" asp-route-id="@Model.resumes[item+1].Id">
+                                    <div>
+                                        <h5>@Model.resumes[item + 1].desireWork</h5>
+                                    </div>
 
-                    <small> @Model.vacancies[item + 1].company</small>
+                                    <small class="text-muted"> @Model.resumes[item + 1].desireSalary</small>
 
-                </a>
+                                    <small> @Model.resumes[item + 1].education</small>
 
-            </td>
+                                </a>
+
+                            </td>
 
 
-           
-        </tr>
+
+                        </tr>
+                    }
                 }
             }
 
 
-            /* <tr>
-                <td>
-                    <div style="height:213px; width:387px; border-radius:10px">
-                        <a asp-page="./Details" asp-route-id="@item.vacancyId" class="list-group-item list-group-item-action">
-                            <div>
-                                <h5>@Html.DisplayFor(modelItem => item.vacancyname)</h5>
-                            </div>
-                            <small class="text-muted">@Html.DisplayFor(modelItem => item.company)</small>
-                            <small class="text-muted">  @Html.DisplayFor(modelItem => item.location)</small>
-
-                            <small>@Html.DisplayFor(modelItem => item.category)</small>
-                            <small style="position:absolute; top:55px; left:750px">@item.publishtime</small>
-                        </a>
-                    </div>
-                </td>
-            </tr>*/
-            }
 
 
+        </tbody>
 
-
-            </tbody>
-
-        </table>
+    </table>
 
     <script src="./js/jquery.js"></script>
 

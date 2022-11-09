@@ -46,14 +46,14 @@
         <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
         <input type="checkbox" id="check" />
         <label for="check">
-            <p style="position:absolute; left:1184px; top:40px;" id="btn">@User.Identity.Name<img style="height:24px; width:25px;" src="~/img/user.png" /> </p>
+            <p style="position:absolute; left:1184px; top:40px;" id="btn">@Model.user.secondname<img style="height:24px; width:25px;" src="~/img/user.png" /> </p>
             <i id="close"><img style="width:50px; height:50px;" src="~/img/close.png" /></i>
         </label>
 
         <div class="sidebar">
             <header>
-                <h3 style="font-size:20px; margin-left:30px; position:absolute; top:29px;"> @User.Identity.Name</h3>
-                <p style="font-size:18px; margin-left:35px; position:absolute; top:62px;">+@Model.worker.workerphone</p>
+                <h3 style="font-size:20px; margin-left:30px; position:absolute; top:29px;"> @Model.user.secondname</h3>
+                <p style="font-size:18px; margin-left:35px; position:absolute; top:62px;">+@Model.user.phone</p>
             </header>
 
             <ul>
@@ -70,9 +70,6 @@
                 </li>
             </ul>
         </div>
-
-
-
     </div>
 </header>
 
@@ -92,21 +89,21 @@
             </button>
 
 
-            <img accept="image/*" alt="Click for selecting photo" 
-                 src="@Model.worker.photoSrc" style="flex-shrink:0; overflow:hidden; display:flex; align-items:center; justify-content:center; border-radius:100%; position:absolute; top:122px; left:283px; height:auto; width:170px;" />
-            <input asp-for="@Model.worker.photoFile" type="file" style="opacity:0; position:absolute; top:122px; left:283px; width:170px; height:170px;" />
+            <img accept="image/*" alt="Click for selecting photo" class="rounded"
+                 src="@Model.resume.photoSrc" style="flex-shrink:0; overflow:hidden; display:flex; align-items:center; justify-content:center; border-radius:100%; position:absolute; top:122px; left:283px; height:170px; " />
+            <input asp-for="@Model.resume.photoFile" type="file" style="opacity:0; position:absolute; top:122px; left:283px; width:auto; height:150px;" />
 
             <div>
                 <h3 style="font-size:24px; position:absolute; top:316px; left:56px;">Особиста інформація*</h3>
 
-                <input asp-for="@Model.worker.firstname" value="@Model.worker.firstname" placeholder="Name" style="position:absolute; width:100px; height:39px;
+                <input asp-for="@Model.user.firstname" value="@Model.user.firstname" placeholder="Name" style="position:absolute; width:100px; height:39px;
             left:57px; top:355px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
 
-                <input asp-for="@Model.worker.secondname" value="@Model.worker.secondname" placeholder="Surname" style="position:absolute; width:266px; height:39px;
+                <input asp-for="@Model.user.secondname" value="@Model.user.secondname" placeholder="Surname" style="position:absolute; width:266px; height:39px;
             left:181px; top:355px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
 
                 <select style="position: absolute; width: 92px; height: 39px; left: 471px; top: 355px; display: flex; flex-direction: row; align-items: center; padding: 10px 15px; gap: 10px; "
-                        asp-for="@Model.worker.age" class="form-select" aria-label="@Model.worker.age">
+                        asp-for="@Model.resume.age" class="form-select" aria-label="@Model.resume.age">
                     <option value="1970">1970</option>
                     <option value="1971">1971 </option>
                     <option value="1972">1972</option>
@@ -154,32 +151,32 @@
               
           
 
-                <input asp-for="@Model.worker.Location" value="@Model.worker.Location" placeholder="City" style="position: absolute; width: 92px; height: 39px;
+                <input asp-for="@Model.resume.Location" value="@Model.resume.Location" placeholder="City" style="position: absolute; width: 92px; height: 39px;
          left: 587px; top: 355px; display: flex; flex-direction: row; align-items: center; padding: 10px 15px; gap: 10px;" />
             </div>
 
             <div>
                 <h3 style="font-size:24px; position:absolute; top:430px; left:56px;">Контактна інформація*</h3>
 
-                <input asp-for="@Model.worker.workerphone" value="@Model.worker.workerphone" placeholder="Phone number" style="position:absolute; width:390px; height:39px;
+                <input asp-for="@Model.user.phone" value="@Model.user.phone" placeholder="Phone number" style="position:absolute; width:390px; height:39px;
             left:57px; top:469px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
 
-                <input asp-for="@Model.worker.email" value="@Model.worker.email" placeholder="Email" style="position:absolute; width:390px; height:39px;
+                <input asp-for="@Model.user.email" value="@Model.user.email" placeholder="Email" style="position:absolute; width:390px; height:39px;
             left:57px; top:524px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
             </div>
 
             <div>
                 <h3 style="font-size:24px; position:absolute; top:604px; left:56px;">Бажана посада*</h3>
 
-                <input asp-for="@Model.worker.desirework" value="@Model.worker.desirework" placeholder="Work name" style="position:absolute; width:390px; height:39px;
+                <input asp-for="@Model.resume.desireWork" value="@Model.resume.desireWork" placeholder="Work name" style="position:absolute; width:390px; height:39px;
             left:57px; top:643px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
 
                
-                <input min="5000" step="1000" max="100000" type="range" class="form-range range-style" asp-for="@Model.worker.desiresalary" value="@Model.worker.desiresalary" placeholder="Salary" style="position:absolute; width:390px; height:39px;
+                <input min="5000" step="1000" max="100000" type="range" class="form-range range-style" asp-for="@Model.resume.desireSalary" value="@Model.resume.desireSalary" placeholder="Salary" style="position:absolute; width:390px; height:39px;
             left:57px; top:698px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
 
                 <select style="position:absolute; width:390px; height:43px; left:57px; top:758px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;"
-                        asp-for="@Model.worker.employmentDegree" class="form-select" aria-label="@Model.worker.employmentDegree">
+                        asp-for="@Model.resume.employmentDegree" class="form-select" aria-label="@Model.resume.employmentDegree">
                     <option value="Повний робочий день">Повний робочий день</option>
                     <option value="Не повний робочий день">Не повний робочий день</option>
                     <option value="Дистанційна робота">Дистанційна робота</option>
@@ -190,11 +187,11 @@
             <div>
                 <h3 style="font-size:24px; position:absolute; top:838px; left:56px;">Освіта</h3>
 
-                <input asp-for="@Model.worker.education" value="@Model.worker.education" placeholder="Education" style="position:absolute; width:290px; height:43px;
+                <input asp-for="@Model.resume.education" value="@Model.resume.education" placeholder="Education" style="position:absolute; width:290px; height:43px;
             left:57px; top:877px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
 
                 <select style="position:absolute; width:142px; height:43px; left:371px; top:877px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;"
-                        asp-for="@Model.worker.educationDegree" class="form-select" aria-label="@Model.worker.educationDegree">
+                        asp-for="@Model.resume.educationDegree" class="form-select" aria-label="@Model.resume.educationDegree">
                     <option value="Junior Bakhelor">Junior Bakhelor</option>
                     <option value="Junior specialist">Junior Specialist</option>
                     <option value="Bakhelor">Bakhelor</option>
@@ -206,7 +203,7 @@
 
 
                 <select style="position:absolute; width:142px; height:43px; left:532px; top:877px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;"
-                        asp-for="@Model.worker.graduationYear" class="form-select" aria-label="@Model.worker.graduationYear">
+                        asp-for="@Model.resume.graduationYear" class="form-select" aria-label="@Model.resume.graduationYear">
                     <option value="2018">2018</option>
                     <option value="2019">2019</option>
                     <option value="2020">2020</option>
@@ -224,12 +221,12 @@
             <div>
                 <h3 style="font-size:24px; position:absolute; top:1036px; left:56px;">Ключові навички</h3>
 
-                <input asp-for="@Model.worker.skills" value="@Model.worker.skills" placeholder="Skills" style="position:absolute; width:390px; height:77px;
+                <input asp-for="@Model.resume.skills" value="@Model.resume.skills" placeholder="Skills" style="position:absolute; width:390px; height:77px;
             left:57px; top:1075px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
 
 
                 <select style="position:absolute; width:92px; height:77px; left:587px; top:1075px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;"
-                        asp-for="@Model.worker.expirience" class="form-select" aria-label="@Model.worker.expirience">
+                        asp-for="@Model.resume.expirience" class="form-select" aria-label="@Model.resume.expirience">
                     <option value="0">0</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -245,32 +242,12 @@
             <div>
                 <h3 style="font-size:24px; position:absolute; top:1188px; left:56px;">Мови</h3>
 
-                <input asp-for="@Model.worker.languages" value="@Model.worker.languages" placeholder="Languages" style="position:absolute; width:390px; height:77px;
+                <input asp-for="@Model.resume.languages" value="@Model.resume.languages" placeholder="Languages" style="position:absolute; width:390px; height:77px;
             left:57px; top:1227px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
             </div>
 
         </form>
     </div>
-    <script>
-        const defaultImageSrc = "./img/mainim.png"
 
-        const [values, setValues] = useState(initialFieldValues)
-        const showPreview = e => {
-            if (e.target.files && e.target.files[0]) {
-                let imageFile = e.target.files[0];
-                const reader = new FileReader();
-                reader.onload = x => {
-                    setValues({
-                        ...values, imageFile, imageSrc: x.target.result
-                    })
-                }
-            } else {
-                setValues({
-                    ...values, imageFile: null,
-                    imageSrc: defaultImageSrc
-                })
-            }
-        }
-    </script>
 
 </body>

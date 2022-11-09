@@ -18,7 +18,7 @@ public class IndexModel : PageModel
     [BindProperty]
     public WorkerIn Model { get; set; }
 
-    public Worker worker { get; set; }
+    public User worker { get; set; }
 
     public IndexModel(DataContext context, SignInManager<IdentityUser> signinManager)
     {
@@ -37,37 +37,46 @@ public class IndexModel : PageModel
 
     public List<string> CategoryList { get; set; }
 
-    public async Task OnGetAsync()
+    public async Task<IActionResult> OnGetAsync()
     {
-        if(signinManager.IsSignedIn(User))
+        if (signinManager.IsSignedIn(User))
         {
-            worker = await _context.workers.FirstAsync(s => s.secondname == User.Identity.Name);
-        }
-
-      var CL = (from m in _context.vacancies select m.category);
-
-        CategoryList = await CL.ToListAsync();
-
-        for(int i=0;i<CategoryList.Count;++i)
-        {
-            for(int r=i+1;r<CategoryList.Count;++r)
+            worker = await _context.users.FirstAsync(s => s.email == User.Identity.Name);
+            if (worker.isEmployer)
             {
-                if (CategoryList[i] == CategoryList[r])
-                {
-                    CategoryList.RemoveAt(r);
-                }
+                return RedirectToPage("./Employer/Index");
             }
         }
+        
 
-        // worker = await _context.workers.FirstAsync(s => s.secondname == User.Identity.Name);
 
-        var vacancies1 = from m in _context.vacancies
-                         select m;
-        if(!string.IsNullOrEmpty(SearchString))
-        {
-            vacancies1 = vacancies1.Where(s => s.vacancyname.ToLower().Contains(SearchString.ToLower())||s.description.ToLower().Contains(SearchString.ToLower())||s.category.ToLower().Contains(SearchString.ToLower()));  
-        }
-        vacancies = await vacancies1.ToListAsync();
+            var CL = (from m in _context.vacancies select m.category);
+
+            CategoryList = await CL.ToListAsync();
+
+            for (int i = 0; i < CategoryList.Count; ++i)
+            {
+                for (int r = i + 1; r < CategoryList.Count; ++r)
+                {
+                    if (CategoryList[i] == CategoryList[r])
+                    {
+                        CategoryList.RemoveAt(r);
+                    }
+                }
+            }
+
+            // worker = await _context.workers.FirstAsync(s => s.secondname == User.Identity.Name);
+
+            var vacancies1 = from m in _context.vacancies
+                             select m;
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                vacancies1 = vacancies1.Where(s => s.vacancyname.ToLower().Contains(SearchString.ToLower()) || s.description.ToLower().Contains(SearchString.ToLower()) || s.category.ToLower().Contains(SearchString.ToLower()));
+            }
+            vacancies = await vacancies1.ToListAsync();
+
+            return Page();
+        
 
       //  vacancies = await _context.vacancies.ToListAsync();
     }
@@ -76,8 +85,8 @@ public class IndexModel : PageModel
     {
         if (ModelState.IsValid)
         {
-            
-                var identityResult = await signinManager.PasswordSignInAsync(Model.name, Model.salt, true, false);
+                var identityResult = await signinManager.PasswordSignInAsync(Model.name, Model.salt, true, false);       
+
                 if(!identityResult.Succeeded)
                 {
                 ModelState.TryAddModelError("", "Username or Password incorrect");

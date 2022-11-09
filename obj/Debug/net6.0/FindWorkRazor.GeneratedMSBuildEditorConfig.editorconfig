@@ -19,16 +19,40 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/Employer/CreateVacancy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRW1wbG95ZXIvQ3JlYXRlVmFjYW5jeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/Employer/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRW1wbG95ZXIvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/Employer/MyListVacancies.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRW1wbG95ZXIvTXlMaXN0VmFjYW5jaWVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/Employer/MyVacancies.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRW1wbG95ZXIvTXlWYWNhbmNpZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/Employer/RespondedPeople.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRW1wbG95ZXIvUmVzcG9uZGVkUGVvcGxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/Employer/ResumeDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRW1wbG95ZXIvUmVzdW1lRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/EmployerDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRW1wbG95ZXJEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/Logout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9nb3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/MyResponses.cshtml]
@@ -41,6 +65,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/RespondedEmployers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUmVzcG9uZGVkRW1wbG95ZXJzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/Shared/_ValidationScriptsPartial.cshtml]

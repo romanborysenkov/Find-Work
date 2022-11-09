@@ -1,12 +1,20 @@
 ﻿<Properties StartupConfiguration="{11969037-B42E-4A8E-BE0C-EE409B06C655}|Default">
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Pages/Index.cshtml">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/SignUp.cshtml.cs" relfile="Pages/SignUp.cshtml.cs" line="84" column="1" />
+      <Breakpoint file="/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/SignUp.cshtml.cs" relfile="Pages/SignUp.cshtml.cs" line="83" column="1" />
+      <Breakpoint file="/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/LogIn.cshtml.cs" relfile="Pages/LogIn.cshtml.cs" line="32" column="1" />
+      <Breakpoint file="/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/LogIn.cshtml.cs" relfile="Pages/LogIn.cshtml.cs" line="30" column="1" />
+      <Breakpoint file="/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/Employer/ResumeDetails.cshtml.cs" relfile="Pages/Employer/ResumeDetails.cshtml.cs" line="85" column="1" />
+      <Breakpoint file="/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/Employer/ResumeDetails.cshtml.cs" relfile="Pages/Employer/ResumeDetails.cshtml.cs" line="83" column="1" />
+      <Breakpoint file="/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/Employer/ResumeDetails.cshtml.cs" relfile="Pages/Employer/ResumeDetails.cshtml.cs" line="46" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.FindWorkRazor PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Pages/Employer/Index.cshtml">
     <Files>
-      <File FileName="Pages/Profile.cshtml.cs" Line="71" Column="12" />
-      <File FileName="Pages/Index.cshtml" Line="91" Column="1" />
-      <File FileName="Pages/Index.cshtml.cs" Line="112" Column="6" />
-      <File FileName="wwwroot/css/main.css" Line="68" Column="5" />
-      <File FileName="Pages/Profile.cshtml" Line="181" Column="73" />
+      <File FileName="Pages/Employeer/Index.cshtml" Line="124" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -14,11 +22,19 @@
           <Node name="FindWorkRazor" expanded="True">
             <Node name="FindWorkRazor" expanded="True">
               <Node name="Data" expanded="True" />
-              <Node name="Images" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Pages" expanded="True">
+                <Node name="Employer" expanded="True">
+                  <Node name="CreateVacancy.cshtml" expanded="True" />
+                  <Node name="Index.cshtml" expanded="True" selected="True" />
+                  <Node name="MyListVacancies.cshtml" expanded="True" />
+                  <Node name="RespondedPeople.cshtml" expanded="True" />
+                  <Node name="ResumeDetails.cshtml" expanded="True" />
+                </Node>
+                <Node name="Details.cshtml" expanded="True" />
                 <Node name="Index.cshtml" expanded="True" />
                 <Node name="Profile.cshtml" expanded="True" />
+                <Node name="SignUp.cshtml" expanded="True" />
               </Node>
               <Node name="wwwroot" expanded="True">
                 <Node name="css" expanded="True" />
@@ -32,16 +48,6 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/SignUp.cshtml.cs" relfile="Pages/SignUp.cshtml.cs" line="84" column="1" />
-      <Breakpoint file="/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/SignUp.cshtml.cs" relfile="Pages/SignUp.cshtml.cs" line="83" column="1" />
-      <Breakpoint file="/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/SignUp.cshtml.cs" relfile="Pages/SignUp.cshtml.cs" line="81" column="1" />
-      <Breakpoint file="/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/LogIn.cshtml.cs" relfile="Pages/LogIn.cshtml.cs" line="32" column="1" />
-      <Breakpoint file="/Users/romsyaborysenko/Documents/UNIVERSITY/ipz/project/FindWorkRazor/Pages/LogIn.cshtml.cs" relfile="Pages/LogIn.cshtml.cs" line="30" column="1" />
-    </BreakpointStore>
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.ItemProperties.FindWorkRazor PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

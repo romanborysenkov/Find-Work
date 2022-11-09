@@ -1,0 +1,173 @@
+﻿@page
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager;
+@model FindWorkRazor.Pages.Employer.ResumeDetailsModel
+@{
+}
+
+
+<head>
+    <link rel="stylesheet" href="~/css/vdetails.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/sidebar.css" asp-append-version="true" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100;200;300;600;700&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+</head>
+
+<style>
+    body {
+        font-family: 'Exo 2', sans-serif;
+        background-color: #F5F5F5;
+    }
+</style>
+
+
+<header class="header">
+    <h1 asp-page="/Index" class="jobwrite"><a style="color:white;" asp-page="/Index">JOB FAST</a></h1>
+    <form method="post">
+        <p>
+            <input placeholder="Пошук працівників" class="find" type="text" asp-for="SearchString" />
+            <button asp-route-id="@Model.resume.Id" asp-page-handler="Resumes" class="findb" type="submit">Знайти</button>
+        </p>
+    </form>
+    @{
+        if (SignInManager.IsSignedIn(User))
+        {
+            <div>
+                <a id="sidebarCollapse" class="username">@Model.user.secondname</a>
+            </div>
+        }
+    }
+</header>
+
+
+
+
+
+<body>
+    <div style="background-color:white; position:absolute; left:349px; top:144px; width:736px; height:1681px;">
+
+        <a asp-page="/Index" style="color:black; position:absolute; left:34px; top:42px; font-size:20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z" />
+
+            </svg>  Назад
+        </a>
+        <h2 style="position: absolute; left: 237px; top: 39.5px; font-style: normal; font-size: 24px; color:#1A2E35;">@Model.resume.desireWork</h2>
+
+        @if (Model.isCalled)
+        {
+            <label style="display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 14px 34px; gap: 10px;
+          width: 140px; height: 44px; background-color: #E05B49; border-radius:10px; position:absolute; left:530px; color:white; top:32px;">Already called</label>
+        }
+        else
+        {
+            <form method="post">
+
+
+                <button asp-route-id="@Model.resume.Id" asp-page-handler="Call" style="display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 14px 34px; gap: 10px;
+          width: 140px; height: 44px; background-color: #E05B49; border-radius:10px; position:absolute; left:530px; color:white; top:32px;">
+                    Надіслати запит
+                </button>
+            </form>
+        }
+
+        <img accept="image/*" alt="Click for selecting photo"class="rounded"
+             src="@Model.resume.photoSrc" style="flex-shrink:0; overflow:hidden; display:flex; align-items:center; justify-content:center; border-radius:100%; position:absolute; top:122px; left:283px; height:170px;" />
+
+
+        <div>
+            <h3 style="font-size:24px; position:absolute; top:316px; left:56px;">Особиста інформація*</h3>
+
+            <input readonly value="@Model.resumeOwner.firstname" placeholder="Name" style="position:absolute; width:100px; height:39px;
+            left:57px; top:355px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
+
+            <input readonly value="@Model.resumeOwner.secondname" placeholder="Surname" style="position:absolute; width:266px; height:39px;
+            left:181px; top:355px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
+
+
+
+
+            <input style="position: absolute; width: 92px; height: 39px; left: 471px; top: 355px; display: flex; flex-direction: row; align-items: center; padding: 10px 15px; gap: 10px; "
+                   value="@Model.resume.age" readonly class="form-select" aria-label="@Model.resume.age" />
+
+
+
+            <input readonly value="@Model.resume.Location" placeholder="City" style="position: absolute; width: 92px; height: 39px;
+         left: 587px; top: 355px; display: flex; flex-direction: row; align-items: center; padding: 10px 15px; gap: 10px;" />
+        </div>
+
+        <div>
+            <h3 style="font-size:24px; position:absolute; top:430px; left:56px;">Контактна інформація*</h3>
+
+            <input readonly value="@Model.resumeOwner.phone" placeholder="Phone number" style="position:absolute; width:390px; height:39px;
+            left:57px; top:469px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
+
+            <input readonly value="@Model.resumeOwner.email" placeholder="Email" style="position:absolute; width:390px; height:39px;
+            left:57px; top:524px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
+        </div>
+
+        <div>
+            <h3 style="font-size:24px; position:absolute; top:604px; left:56px;">Бажана посада*</h3>
+
+            <input readonly value="@Model.resume.desireWork" placeholder="Work name" style="position:absolute; width:390px; height:39px;
+            left:57px; top:643px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
+
+
+            <input min="5000" step="1000" max="100000" type="range" class="form-range range-style" readonly value="@Model.resume.desireSalary" placeholder="Salary" style="position:absolute; width:390px; height:39px;
+            left:57px; top:698px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
+
+            <input style="position:absolute; width:390px; height:43px; left:57px; top:758px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;"
+                   readonly value="@Model.resume.employmentDegree" class="form-select" aria-label="@Model.resume.employmentDegree" />
+
+        </div>
+
+        <div>
+            <h3 style="font-size:24px; position:absolute; top:838px; left:56px;">Освіта</h3>
+
+            <input readonly value="@Model.resume.education" placeholder="Education" style="position:absolute; width:290px; height:43px;
+            left:57px; top:877px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
+
+            <input value="@Model.resume.educationDegree" style="position:absolute; width:142px; height:43px; left:371px; top:877px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;"
+                   readonly class="form-select" aria-label="@Model.resume.educationDegree" />
+
+
+
+
+
+            <input value="@Model.resume.graduationYear" readonly style="position:absolute; width:142px; height:43px; left:532px; top:877px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;"
+                   class="form-select" aria-label="@Model.resume.graduationYear" />
+
+
+
+        </div>
+
+        <div>
+            <h3 style="font-size:24px; position:absolute; top:1036px; left:56px;">Ключові навички</h3>
+
+            <input readonly value="@Model.resume.skills" placeholder="Skills" style="position:absolute; width:390px; height:77px;
+            left:57px; top:1075px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
+
+
+            <input value="@Model.resume.expirience" readonly style="position:absolute; width:92px; height:77px; left:587px; top:1075px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;"
+                   class="form-select" aria-label="@Model.resume.expirience" />
+
+
+
+        </div>
+
+
+        <div>
+            <h3 style="font-size:24px; position:absolute; top:1188px; left:56px;">Мови</h3>
+
+            <input readonly value="@Model.resume.languages" placeholder="Languages" style="position:absolute; width:390px; height:77px;
+            left:57px; top:1227px; display:flex; flex-direction:row; align-items:center; padding:10px 15px; gap:10px;" />
+        </div>
+
+    </div>
+</body>
